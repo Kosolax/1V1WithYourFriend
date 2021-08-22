@@ -6,6 +6,9 @@ public class DeathBarrier : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        if(other.tag == "player")
+        {
+            other.GetComponent<Player>().Die();
+        }
     }
 }

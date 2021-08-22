@@ -94,7 +94,7 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         isDead = true;
         for (int i = 0; i < DisableOnDeath.Length; i++)
