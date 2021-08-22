@@ -21,17 +21,18 @@ public class Player : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            this.ITookDamage(999);
+            this.Die();
         }
     }
 
     private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(2f);
-        this.Reset();
         Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
         this.transform.position = spawnPoint.position;
         this.transform.rotation = spawnPoint.rotation;
+
+        this.Reset();
     }
 
     [SyncVar]
@@ -92,6 +93,8 @@ public class Player : NetworkBehaviour
         {
             DisableOnDeath[i].enabled = WasEnableOnStart[i];
         }
+
+        this.GetComponent<CharacterController>().enabled = true;
     }
 
     public void Die()
@@ -101,6 +104,8 @@ public class Player : NetworkBehaviour
         {
             DisableOnDeath[i].enabled = false;
         }
+
+        this.GetComponent<CharacterController>().enabled = false;
 
         this.StartCoroutine(this.Respawn());
     }
