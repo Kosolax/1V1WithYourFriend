@@ -29,6 +29,16 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        uint netId = this.GetComponent<NetworkIdentity>().netId;
+        Player player = this.GetComponent<Player>();
+
+        GameManager.AddPlayer(netId, player);
+    }
+
     private void OnDisable()
     {
         if(sceneCamera != null)
