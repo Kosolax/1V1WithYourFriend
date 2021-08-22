@@ -21,8 +21,14 @@ public class PlayerShoot : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
+    [Command]
     public void Shoot()
+    {
+        this.ShootRpc();
+    }
+
+    [ClientRpc]
+    private void ShootRpc()
     {
         GameObject bullet = Instantiate(BulletPrefab, RemoteCanon.transform.position, Quaternion.identity);
         bullet.GetComponent<Rigidbody>().velocity = bullet.transform.TransformDirection(this.RemoteCanon.transform.forward * this.BulletSpeed);
