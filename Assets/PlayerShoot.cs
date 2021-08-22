@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+
+using Mirror;
+
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot : NetworkBehaviour
 {
     public GameObject BulletPrefab;
 
@@ -18,6 +21,7 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
+    [ClientRpc]
     public void Shoot()
     {
         GameObject bullet = Instantiate(BulletPrefab, RemoteCanon.transform.position, Quaternion.identity);

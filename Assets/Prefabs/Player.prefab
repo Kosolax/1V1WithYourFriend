@@ -1201,6 +1201,7 @@ MonoBehaviour:
   - {fileID: 1364860850}
   - {fileID: 503586429240709371}
   - {fileID: 503586429240709364}
+  - {fileID: 801834614}
 --- !u!143 &1794326323
 CharacterController:
   m_ObjectHideFlags: 0
