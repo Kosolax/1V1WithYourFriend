@@ -1346,9 +1346,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905e9d33fe200ee42ba0fba146f81678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   BulletPrefab: {fileID: 6856608480287557367, guid: 3d3711f23fc0d4f41b604038b1c0c79f, type: 3}
   RemoteCanon: {fileID: 503586428842527453}
-  BulletSpeed: 200
+  BulletSpeed: 1
 --- !u!1 &503586429354012827
 GameObject:
   m_ObjectHideFlags: 0
