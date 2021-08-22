@@ -1233,8 +1233,8 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 64
-  Speed: 6
   JumpHeight: 1.5
+  Speed: 6
 --- !u!1 &503586429354012827
 GameObject:
   m_ObjectHideFlags: 0
