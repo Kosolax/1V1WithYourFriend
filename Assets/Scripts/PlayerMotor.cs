@@ -1,18 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerMotor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private Camera cam;
+    private Vector3 velocity;
+    private Vector3 rotation;
+    private Vector3 cameraRotation;
+    private Rigidbody rb;
+
+    private void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Move(Vector3 _velocity)
     {
-        
+        velocity = _velocity;
+    }
+
+    public void RotateCamera(Vector3 _cameraRotation)
+    {
+        cameraRotation = _cameraRotation;
+    }
+
+    public void Rotate(Vector3 _rotation)
+    {
+        rotation = _rotation;
+    }
+
+    private void FixedUpdate()
+    {
+        PerformMovement();
+        PerformRotation();
+    }
+
+    private void PerformMovement()
+    {
+        if(velocity != Vector3.zero)
+        {
+            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+        }
+    }
+
+    private void PerformRotation()
+    {
+        if (velocity != Vector3.zero)
+        {
+            rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
+            cam.transform.Rotate(-cameraRotation);
+        }
     }
 }
