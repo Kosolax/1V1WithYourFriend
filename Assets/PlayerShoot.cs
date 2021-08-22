@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public Transform RemoteCanon;
-
     public GameObject BulletPrefab;
 
-    public Player Player;
-
-    public Transform CameraTransform;
+    public GameObject RemoteCanon;
 
     public int BulletSpeed;
 
@@ -24,9 +20,7 @@ public class PlayerShoot : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bullet = Instantiate(BulletPrefab, RemoteCanon.position, Quaternion.identity);
-        bullet.transform.rotation = RemoteCanon.transform.rotation;
-
-        bullet.GetComponentInChildren<Rigidbody>().velocity = this.transform.TransformDirection(bullet.transform.forward * BulletSpeed);
+        GameObject bullet = Instantiate(BulletPrefab, RemoteCanon.transform.position, Quaternion.identity);
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.TransformDirection(this.RemoteCanon.transform.forward * this.BulletSpeed);
     }
 }
