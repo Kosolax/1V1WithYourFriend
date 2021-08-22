@@ -8,13 +8,7 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        this.StartCoroutine(this.SelfDestruct());
-    }
-
-    IEnumerator SelfDestruct()
-    {
-        yield return new WaitForSeconds(2f);
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 3f);
     }
 
     private void OnTriggerEnter(Collider other)
