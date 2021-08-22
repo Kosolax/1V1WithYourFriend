@@ -48,10 +48,7 @@ public class PlayerMotor : MonoBehaviour
 
     private void PerformRotation()
     {
-        if (velocity != Vector3.zero)
-        {
-            rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
-            cam.transform.Rotate(-cameraRotation);
-        }
+        rb.MoveRotation(rb.rotation * Quaternion.Euler(rotation));
+        cam.transform.Rotate(-cameraRotation);
     }
 }

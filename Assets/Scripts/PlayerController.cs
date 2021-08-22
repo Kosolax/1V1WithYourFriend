@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         //left / right
         float xMov = Input.GetAxisRaw("Horizontal");
