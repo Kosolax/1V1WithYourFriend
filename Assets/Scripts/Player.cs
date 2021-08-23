@@ -25,9 +25,8 @@ public class Player : NetworkBehaviour
         }
     }
 
-    private IEnumerator Respawn()
+    private void Respawn()
     {
-        yield return new WaitForSeconds(2f);
         Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
         this.transform.position = spawnPoint.position;
         this.transform.rotation = spawnPoint.rotation;
@@ -107,6 +106,6 @@ public class Player : NetworkBehaviour
 
         this.GetComponent<CharacterController>().enabled = false;
 
-        this.StartCoroutine(this.Respawn());
+        this.Respawn();
     }
 }

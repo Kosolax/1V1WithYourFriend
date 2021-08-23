@@ -18,7 +18,16 @@ public class GunShootRaycast : NetworkBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            muzzleFlash.Play();
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
+            {
+                Player target = hit.transform.GetComponent<Player>();
+                if (target != null)
+                {
+                    Shoot(target);
+                }
+            }
         }
     }
 
@@ -37,24 +46,15 @@ public class GunShootRaycast : NetworkBehaviour
     }
 
     [Command]
-    public void Shoot()
+    public void Shoot(Player target)
     {
-        this.ShootRpc();
+        this.ShootRpc(target);
     }
 
     [ClientRpc]
-    private void ShootRpc()
+    private void ShootRpc(Player target)
     {
-        muzzleFlash.Play();
-        RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit)) 
-        {
-            Player target = hit.transform.GetComponent<Player>();
-            if (target != null)
-            {
-                target.ITookDamage(damage);
-                StartCoroutine(HitMarker());
-            }
-        }
+        target.ITookDamage(damage);
+        StartCoroutine(HitMarker());
     }
 }
