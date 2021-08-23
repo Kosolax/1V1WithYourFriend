@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using Mirror;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : NetworkBehaviour
 {
     public float Health;
 
     public float MaxHealth;
+
+    public Text PlayerLife;
 
     private void Update()
     {
@@ -67,6 +70,7 @@ public class Player : NetworkBehaviour
         }
 
         this.Health -= damage;
+        this.PlayerLife.text = this.Health.ToString();
         if (this.Health <= 0)
         {
             this.Die();
@@ -88,6 +92,7 @@ public class Player : NetworkBehaviour
     {
         isDead = false;
         this.Health = this.MaxHealth;
+        this.PlayerLife.text = this.Health.ToString();
         for (int i = 0; i < WasEnableOnStart.Length; i++)
         {
             DisableOnDeath[i].enabled = WasEnableOnStart[i];

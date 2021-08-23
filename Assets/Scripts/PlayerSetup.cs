@@ -6,6 +6,9 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField]
     Behaviour[] componentsToDisable;
 
+    [SerializeField]
+    GameObject[] gameObjectToDisable;
+
     Camera sceneCamera;
 
     private void Start()
@@ -16,6 +19,11 @@ public class PlayerSetup : NetworkBehaviour
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
                 componentsToDisable[i].enabled = false;
+            }
+
+            for (int i = 0; i < gameObjectToDisable.Length; i++)
+            {
+                gameObjectToDisable[i].SetActive(false);
             }
         }
         else
