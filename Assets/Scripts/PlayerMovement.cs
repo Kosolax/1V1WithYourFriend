@@ -31,17 +31,20 @@ public class PlayerMovement : MonoBehaviour
             this.velocity.y = -2f;
         }
 
-        // Move locally
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = this.transform.right * x + this.transform.forward * z;
-        this.CharacterController.Move(move * this.Speed * Time.deltaTime);
-
-        // Jump
-        if (Input.GetButtonDown("Jump") && this.isGrounded)
+        if (MainMenu.isOn == false)
         {
-            this.velocity.y = Mathf.Sqrt(this.JumpHeight * -2f * this.Gravity);
+            // Move locally
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = this.transform.right * x + this.transform.forward * z;
+            this.CharacterController.Move(move * this.Speed * Time.deltaTime);
+
+            // Jump
+            if (Input.GetButtonDown("Jump") && this.isGrounded)
+            {
+                this.velocity.y = Mathf.Sqrt(this.JumpHeight * -2f * this.Gravity);
+            }
         }
 
         // Gravity

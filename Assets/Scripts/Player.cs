@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using Mirror;
 
 using UnityEngine;
@@ -9,23 +5,64 @@ using UnityEngine.UI;
 
 public class Player : NetworkBehaviour
 {
+    public Behaviour[] DisableOnDeath;
+
     public float Health;
 
     public float MaxHealth;
 
+    public MenuController menuController;
+
     public Text PlayerLife;
 
-    private void Update()
+    public bool[] WasEnableOnStart;
+
+    [SyncVar]
+    private bool isDead = false;
+
+    public bool IsDead { get => this.isDead; set => this.isDead = value; }
+
+    public void Die()
     {
-        if (!this.isLocalPlayer)
+        isDead = true;
+        for (int i = 0; i < DisableOnDeath.Length; i++)
         {
-            return;
+            DisableOnDeath[i].enabled = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        this.GetComponent<CharacterController>().enabled = false;
+
+        this.Respawn();
+    }
+
+    [Command]
+    public void ITookDamage(float damage)
+    {
+        this.UpdateHpForOthers(damage);
+    }
+
+    public void Reset()
+    {
+        isDead = false;
+        this.Health = this.MaxHealth;
+        this.PlayerLife.text = this.Health.ToString();
+        for (int i = 0; i < WasEnableOnStart.Length; i++)
         {
-            this.Die();
+            DisableOnDeath[i].enabled = WasEnableOnStart[i];
         }
+
+        this.GetComponent<CharacterController>().enabled = true;
+    }
+
+    public void Setup()
+    {
+        WasEnableOnStart = new bool[DisableOnDeath.Length];
+        for (int i = 0; i < WasEnableOnStart.Length; i++)
+        {
+            WasEnableOnStart[i] = DisableOnDeath[i].enabled;
+        }
+
+        this.Reset();
     }
 
     private void Respawn()
@@ -35,31 +72,6 @@ public class Player : NetworkBehaviour
         this.transform.rotation = spawnPoint.rotation;
 
         this.Reset();
-    }
-
-    [SyncVar]
-    private bool isDead = false;
-
-    public Behaviour[] DisableOnDeath;
-
-    public bool[] WasEnableOnStart;
-
-    public bool IsDead
-    {
-        get => this.isDead;
-        set => this.isDead = value;
-    }
-
-    [Command]
-    public void ITookDamage(float damage)
-    {
-        this.UpdateHpForOthers(damage);
-    }
-
-    [ClientRpc]
-    private void UpdateHpForOthers(float damage)
-    {
-        GameManager.Players[this.name].SetHealth(damage);
     }
 
     private void SetHealth(float damage)
@@ -77,40 +89,22 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public void Setup()
+    private void Update()
     {
-        WasEnableOnStart = new bool[DisableOnDeath.Length];
-        for (int i = 0; i < WasEnableOnStart.Length; i++)
+        if (!this.isLocalPlayer)
         {
-            WasEnableOnStart[i] = DisableOnDeath[i].enabled;
+            return;
         }
 
-        this.Reset();
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            this.Die();
+        }
     }
 
-    public void Reset()
+    [ClientRpc]
+    private void UpdateHpForOthers(float damage)
     {
-        isDead = false;
-        this.Health = this.MaxHealth;
-        this.PlayerLife.text = this.Health.ToString();
-        for (int i = 0; i < WasEnableOnStart.Length; i++)
-        {
-            DisableOnDeath[i].enabled = WasEnableOnStart[i];
-        }
-
-        this.GetComponent<CharacterController>().enabled = true;
-    }
-
-    public void Die()
-    {
-        isDead = true;
-        for (int i = 0; i < DisableOnDeath.Length; i++)
-        {
-            DisableOnDeath[i].enabled = false;
-        }
-
-        this.GetComponent<CharacterController>().enabled = false;
-
-        this.Respawn();
+        GameManager.Players[this.name].SetHealth(damage);
     }
 }

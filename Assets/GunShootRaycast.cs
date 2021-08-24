@@ -1,37 +1,30 @@
 using Mirror;
 
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GunShootRaycast : NetworkBehaviour
 {
     public float damage = 10f;
-    public float range = 100f;
 
     public Camera fpsCam;
-    public ParticleSystem muzzleFlash;
+
     public GameObject hitMarker;
 
-    // Update is called once per frame
-    void Update()
+    public float hitMarkerDelay = 0.1f;
+
+    public ParticleSystem muzzleFlash;
+
+    public float range = 100f;
+
+    [Command]
+    public void Touched(Player target)
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            this.Shoot();
-            RaycastHit hit;
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
-            {
-                Player target = hit.transform.GetComponent<Player>();
-                if (target != null)
-                {
-                    Touched(target);
-                }
-            }
-        }
+        this.TouchedRpc(target);
     }
 
-    IEnumerator HitMarker()
+    private IEnumerator HitMarker()
     {
         if (hitMarker.activeInHierarchy)
         {
@@ -40,7 +33,7 @@ public class GunShootRaycast : NetworkBehaviour
 
         hitMarker.SetActive(true);
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(hitMarkerDelay);
 
         hitMarker.SetActive(false);
     }
@@ -57,17 +50,33 @@ public class GunShootRaycast : NetworkBehaviour
         muzzleFlash.Play();
     }
 
-
-    [Command]
-    public void Touched(Player target)
-    {
-        this.TouchedRpc(target);
-    }
-
     [ClientRpc]
     private void TouchedRpc(Player target)
     {
         target.ITookDamage(damage);
         StartCoroutine(HitMarker());
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        if (MainMenu.isOn == true)
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            this.Shoot();
+            RaycastHit hit;
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
+            {
+                Player target = hit.transform.GetComponent<Player>();
+                if (target != null)
+                {
+                    Touched(target);
+                }
+            }
+        }
     }
 }
