@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
-  range: 100
+  range: 200
   fireRate: 1
   magazineSize: 3
   reloadTime: 4

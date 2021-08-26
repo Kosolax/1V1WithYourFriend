@@ -18,6 +18,8 @@ public class GunShootRaycast : NetworkBehaviour
 
     public float hitMarkerDelay = 0.1f;
 
+    public float beamDuration = 1f;
+
     public ParticleSystem muzzleFlash;
 
     private float damage = 10f;
@@ -26,6 +28,11 @@ public class GunShootRaycast : NetworkBehaviour
 
     [SyncVar]
     private bool isReloading = false;
+
+    private LineRenderer lr;
+
+    [SerializeField]
+    private GameObject shootEmmiter;
 
     private float magazineSize = 0f;
 
@@ -110,20 +117,49 @@ public class GunShootRaycast : NetworkBehaviour
     {
         this.Shoot();
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit))
+        if (Physics.Raycast(this.fpsCam.transform.position, this.fpsCam.transform.forward, out hit, this.range))
         {
             Player target = hit.transform.GetComponent<Player>();
             if (target != null)
             {
                 Touched(target);
             }
+            Vector3[] lrPoints = { this.shootEmmiter.transform.position, hit.point };
+            ShootBeamCommand(lrPoints);
         }
+        else
+        {
+            Ray ray = new Ray(this.fpsCam.transform.position, this.fpsCam.transform.forward);
+            Vector3[] lrPoints = { this.shootEmmiter.transform.position, ray.GetPoint(this.range) };
+            ShootBeamCommand(lrPoints);
+        }
+    }
+
+    private IEnumerator ShootBeam(Vector3[] lrPoints)
+    {
+        lr.positionCount = 2;
+        lr.SetPositions(lrPoints);
+        yield return new WaitForSeconds(this.beamDuration);
+        lr.positionCount = 0;
+        Vector3[] emptyList = { };
+        lr.SetPositions(emptyList);
+    }
+    [Command]
+    private void ShootBeamCommand(Vector3[] lrPoints)
+    {
+        this.ShootBeamRPC(lrPoints);
+    }
+
+    [ClientRpc]
+    private void ShootBeamRPC(Vector3[] lrPoints)
+    {
+        StartCoroutine(ShootBeam(lrPoints));
     }
 
     [ClientRpc]
     private void ShootRpc()
     {
-        muzzleFlash.Play();
+        this.muzzleFlash.Play();
     }
 
     [ClientRpc]
@@ -170,5 +206,10 @@ public class GunShootRaycast : NetworkBehaviour
         {
             this.AmmoCounter.text = this.ammo.ToString();
         }
+    }
+
+    private void Start()
+    {
+        this.lr = this.GetComponent<LineRenderer>();
     }
 }
