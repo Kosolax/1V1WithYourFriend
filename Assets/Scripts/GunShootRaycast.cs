@@ -184,7 +184,7 @@ public class GunShootRaycast : NetworkBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && this.ammo != this.magazineSize)
         {
             this.Reload();
         }
