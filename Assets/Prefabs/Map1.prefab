@@ -4660,7 +4660,7 @@ GameObject:
   - component: {fileID: 2599049900351307701}
   - component: {fileID: 2599049900351307700}
   - component: {fileID: 2599049900351307691}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: DeathBarrier
   m_TagString: Untagged
   m_Icon: {fileID: 0}

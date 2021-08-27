@@ -100,6 +100,7 @@ public class GunShootRaycast : NetworkBehaviour
     private IEnumerator ReloadCoroutine(float waitTime)
     {
         this.isReloading = true;
+        this.AmmoCounter.text = "Reloading...";
         yield return new WaitForSeconds(waitTime);
         this.ammo = this.magazineSize;
         this.isReloading = false;
@@ -199,7 +200,6 @@ public class GunShootRaycast : NetworkBehaviour
     {
         if (this.ammo == 0 && this.isReloading == false)
         {
-            this.AmmoCounter.text = "Reloading...";
             this.Reload();
         }
         else
