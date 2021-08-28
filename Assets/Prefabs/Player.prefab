@@ -765,7 +765,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1839666242}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 2000
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -2408,6 +2408,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 503586428717117621}
     m_Modifications:
+    - target: {fileID: 5694482869032926640, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5694482869032926640, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
       propertyPath: GunShootRaycast
       value: 
