@@ -1230,13 +1230,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af66aed4543c144f874f8136c8ed485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ButtonMapPrefab: {fileID: 552602789002232875, guid: 8e3ee4baca1752046bf9161c863f663e, type: 3}
+  Container: {fileID: 2030178970}
+  LobbyManager: {fileID: 706312373}
+  PlayerPrefab: {fileID: 503586429310425935, guid: 91d3fab5b3a7fd049b2618d7dabb5d20, type: 3}
   SceneNames:
   - Game
   - ZianIlCroitPas
-  PlayerPrefab: {fileID: 503586429310425935, guid: 91d3fab5b3a7fd049b2618d7dabb5d20, type: 3}
-  Container: {fileID: 2030178970}
-  ButtonMapPrefab: {fileID: 552602789002232875, guid: 8e3ee4baca1752046bf9161c863f663e, type: 3}
-  LobbyManager: {fileID: 706312373}
 --- !u!1 &438027595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,15 +1554,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a00b25f71d63e44a3ffdec5e9eea1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NetworkManager: {fileID: 2032736551}
-  PlayerSetting: {fileID: 2032736553}
-  SensitivitySlider: {fileID: 126895022}
-  SensitivityInputField: {fileID: 736139624}
-  IpInputField: {fileID: 318952429}
   Container: {fileID: 2030178970}
-  PlayerPrefab: {fileID: 0}
-  SceneName: 
   DoneButton: {fileID: 1325759638}
+  IpInputField: {fileID: 318952429}
+  NetworkManager: {fileID: 2032736551}
+  PlayerPrefab: {fileID: 0}
+  PlayerSetting: {fileID: 2032736553}
+  SceneName: 
+  SensitivityInputField: {fileID: 736139624}
+  SensitivitySlider: {fileID: 126895022}
 --- !u!4 &706312374
 Transform:
   m_ObjectHideFlags: 0
@@ -2196,7 +2196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1325759639
 RectTransform:
   m_ObjectHideFlags: 0
