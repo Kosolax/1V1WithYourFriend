@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ZianIlCroitPas.unity
     guid: 46ec2e2ac071c9a42939cbb3a91d2ca4
+  - enabled: 1
+    path: Assets/Scenes/ZombieBasic.unity
+    guid: 045d6cb9a6939d941af55b8932d54a1e
   m_configObjects: {}

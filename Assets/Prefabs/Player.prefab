@@ -3553,10 +3553,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2828290982052559495}
   - {fileID: 3098845503756824317}
+  - {fileID: 2828290982052559495}
   SceneNames:
   - Game
   - ZianIlCroitPas
-  ModEnumsToMapSceneNames: 0100000002000000
+  - ZombieBasic
+  ModEnumsToMapSceneNames: 010000000200000003000000
   Gravity: 0
   Health: 0
   JumpHeight: 0
