@@ -1,59 +1,32 @@
-using Mirror;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerSetup : NetworkBehaviour
+public class PlayerSetup : MonoBehaviour
 {
-    [SerializeField]
-    Behaviour[] componentsToDisable;
+    [Header("Player Statistics")]
+    public float Gravity = -19.62f;
+    public float Health = 100;
+    public float JumpHeight = 3f;
+    public float MaxHealth = 100;
+    public float MouseSensitivity = 400f;
+    public float Speed = 20f;
 
-    [SerializeField]
-    GameObject[] gameObjectToDisable;
+    [Header("Player Rotation Settings")]
+    public Transform XRotationTransform;
+    public Transform YRotationTransform;
 
-    Camera sceneCamera;
+    [Header("Player Movement Settings")]
+    public CharacterController CharacterController;
+    public Transform GroundCheck;
+    public LayerMask GroundMask;
+    public Transform PlayerTransform;
 
-    private void Start()
-    {
-        if(!isLocalPlayer)
-        {
-            //disable components that should'nt be used by the player when joining (like other player controler)
-            for (int i = 0; i < componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = false;
-            }
+    [Header("Player SetUp Settings")]
+    public GameObject[] GameObjectToDisable;
+    public Behaviour[] ComponentsToDisable;
 
-            for (int i = 0; i < gameObjectToDisable.Length; i++)
-            {
-                gameObjectToDisable[i].SetActive(false);
-            }
-        }
-        else
-        {
-            //disable main camera on player join
-            sceneCamera = Camera.main;
-            if(sceneCamera != null)
-            {
-                sceneCamera.gameObject.SetActive(false);
-            }
-        }
-
-        this.GetComponent<Player>().Setup();
-    }
-
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        uint netId = this.GetComponent<NetworkIdentity>().netId;
-        Player player = this.GetComponent<Player>();
-
-        GameManager.AddPlayer(netId, player);
-    }
-
-    private void OnDisable()
-    {
-        if(sceneCamera != null)
-        {
-            sceneCamera.gameObject.SetActive(true);
-        }
-    }
+    [Header("Player Health Settings")]
+    public Text PlayerLifeText;
 }

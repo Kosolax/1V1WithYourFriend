@@ -11,9 +11,6 @@ public class MenuController : MonoBehaviour
     private GameObject mainMenu;
 
     [SerializeField]
-    private PlayerLook playerLook;
-
-    [SerializeField]
     private GameObject[] UIItemsSwitch;
 
     public void InputFieldUpdate(string text)
@@ -23,8 +20,8 @@ public class MenuController : MonoBehaviour
 
     public void SensitivitySliderUpdate(float value)
     {
-        playerLook.SetSensitivity(value);
-        sensitivityInputField.text = playerLook.MouseSensitivity.ToString();
+        //playerLook.SetSensitivity(value);
+        //sensitivityInputField.text = playerLook.MouseSensitivity.ToString();
     }
 
     public void ToggleMainMenu()
@@ -59,7 +56,7 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         MainMenu.isOn = false;
-        this.sensitivitySlider.value = playerLook.MouseSensitivity;
+        //this.sensitivitySlider.value = playerLook.MouseSensitivity;
     }
 
     private void Update()

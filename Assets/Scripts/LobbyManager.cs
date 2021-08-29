@@ -15,8 +15,6 @@ public class LobbyManager : MonoBehaviour
 
     public NetworkManager NetworkManager;
 
-    public GameObject PlayerPrefab;
-
     public PlayerSetting PlayerSetting;
 
     public string SceneName;
@@ -27,9 +25,8 @@ public class LobbyManager : MonoBehaviour
 
     public void Host()
     {
-        if (this.PlayerPrefab != null && this.SceneName != default)
+        if (this.SceneName != default)
         {
-            this.NetworkManager.playerPrefab = this.PlayerPrefab;
             this.NetworkManager.onlineScene = this.SceneName;
             this.NetworkManager.StartHost();
         }
@@ -53,7 +50,6 @@ public class LobbyManager : MonoBehaviour
 
     public void ResetHost()
     {
-        this.PlayerPrefab = null;
         this.SceneName = string.Empty;
         this.DoneButton.SetActive(false);
         foreach (Transform child in this.Container.transform)
@@ -64,8 +60,8 @@ public class LobbyManager : MonoBehaviour
 
     public void SensitivitySliderUpdate(float value)
     {
-        this.PlayerSetting.MouseSensitivity = value;
-        this.SensitivityInputField.text = this.PlayerSetting.MouseSensitivity.ToString();
+        PlayerSetting.MouseSensitivity = value;
+        this.SensitivityInputField.text = PlayerSetting.MouseSensitivity.ToString();
     }
 
     public void SetMap(string sceneName)
@@ -74,17 +70,11 @@ public class LobbyManager : MonoBehaviour
         this.DoneButton.SetActive(true);
     }
 
-    public void SetPlayerPrefab(GameObject playerPrefab)
-    {
-        this.PlayerPrefab = playerPrefab;
-    }
-
     private void Start()
     {
         this.SensitivitySliderUpdate(400);
         this.IpInputField.text = "localhost";
         this.SceneName = default;
-        this.PlayerPrefab = null;
         Cursor.lockState = CursorLockMode.None;
     }
 }

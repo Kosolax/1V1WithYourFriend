@@ -12,8 +12,6 @@ public class Mod : MonoBehaviour
 
     public LobbyManager LobbyManager;
 
-    public GameObject PlayerPrefab;
-
     public List<string> SceneNames;
 
     public void DisplayMaps()
@@ -22,8 +20,6 @@ public class Mod : MonoBehaviour
         {
             GameObject.Destroy(child.gameObject);
         }
-
-        this.LobbyManager.SetPlayerPrefab(this.PlayerPrefab);
 
         foreach (string sceneName in this.SceneNames)
         {
