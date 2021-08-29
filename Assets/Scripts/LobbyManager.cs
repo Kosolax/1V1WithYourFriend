@@ -85,5 +85,6 @@ public class LobbyManager : MonoBehaviour
         this.IpInputField.text = "localhost";
         this.SceneName = default;
         this.PlayerPrefab = null;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

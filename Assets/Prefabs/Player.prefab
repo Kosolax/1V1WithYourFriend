@@ -2410,7 +2410,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5694482869032926640, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
       propertyPath: damage
-      value: 40
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5694482869032926640, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
       propertyPath: GunShootRaycast
