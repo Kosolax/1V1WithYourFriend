@@ -1312,7 +1312,6 @@ MonoBehaviour:
   ButtonMapPrefab: {fileID: 552602789002232875, guid: 8e3ee4baca1752046bf9161c863f663e, type: 3}
   Container: {fileID: 2030178970}
   LobbyManager: {fileID: 706312373}
-  ModEnum: 1
   SceneNames:
   - Game
 --- !u!1 &438027595
@@ -3378,7 +3377,6 @@ MonoBehaviour:
   ButtonMapPrefab: {fileID: 552602789002232875, guid: 8e3ee4baca1752046bf9161c863f663e, type: 3}
   Container: {fileID: 2030178970}
   LobbyManager: {fileID: 706312373}
-  ModEnum: 2
   SceneNames:
   - ZianIlCroitPas
 --- !u!114 &1591702332
