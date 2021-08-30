@@ -43,6 +43,7 @@ public class Player : NetworkBehaviour
 
     private bool hasFinishInitialisation;
     private PlayerLookManager playerLookManager;
+    private GunShootRaycast gunShootRaycast;
     private PlayerMovementManager playerMovementManager;
     private Camera sceneCamera;
 
@@ -82,6 +83,7 @@ public class Player : NetworkBehaviour
         this.PreInitialisePlayerBasedOnMod();
         this.playerMovementManager = new PlayerMovementManager(this.CharacterController, this.GroundCheck, this.GroundMask, this, this.PlayerTransform);
         this.playerLookManager = new PlayerLookManager(this, this.XRotationTransform, this.YRotationTransform);
+        this.gunShootRaycast = new GunShootRaycast();
         this.InitialisePlayer();
         this.hasFinishInitialisation = true;
     }
@@ -106,7 +108,7 @@ public class Player : NetworkBehaviour
             this.GameObjectToDisable = modPlayer.GameObjectToDisable;
             this.ComponentsToDisable = modPlayer.ComponentsToDisable;
             this.PlayerLifeText = modPlayer.PlayerLifeText;
-            this.GetComponent<NetworkTransformChild>().target = this.YRotationTransform;
+            this.GetComponent<NetworkTransformChild>().target = modPlayer.Camera.transform;
 
             for (int i = 0; i < this.PlayerSetups.Count; i++)
             {

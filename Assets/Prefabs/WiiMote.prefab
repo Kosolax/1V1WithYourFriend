@@ -340,12 +340,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f99d04e3249e740a0c4a1e3b8908b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beamDuration: 0.1
   damage: 100
-  range: 200
   fireRate: 1
-  magazineSize: 3
-  reloadTime: 4
   GunShootRaycast: {fileID: 0}
+  magazineSize: 3
+  range: 200
+  reloadTime: 4
+  muzzleFlashParticle: {fileID: 6178198941344618280}
+  shootEmmiter: {fileID: 3316863737019896997}
 --- !u!1 &6722155377269587183
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,8 +930,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b52dd979f849f498a3249d186c4a45, type: 3}
+--- !u!1 &3316863737019896997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3129090706229941423, guid: f9b52dd979f849f498a3249d186c4a45, type: 3}
+  m_PrefabInstance: {fileID: 390439421817503754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7682045794073640201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8067923198264950019, guid: f9b52dd979f849f498a3249d186c4a45, type: 3}
+  m_PrefabInstance: {fileID: 390439421817503754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6178198941344618280 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5824915331037501218, guid: f9b52dd979f849f498a3249d186c4a45, type: 3}
   m_PrefabInstance: {fileID: 390439421817503754}
   m_PrefabAsset: {fileID: 0}

@@ -68,6 +68,7 @@ MonoBehaviour:
   - {fileID: 442596318}
   - {fileID: 442596317}
   PlayerLifeText: {fileID: 1761598667}
+  Camera: {fileID: 442596318}
 --- !u!1 &73022676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3675,12 +3676,18 @@ MonoBehaviour:
   syncInterval: 0.1
   ammo: 0
   AmmoCounter: {fileID: 4391310949407044015}
+  beamDuration: 0.1
+  damage: 10
+  fireRate: 0
   fpsCam: {fileID: 503586429240709371}
   hitMarker: {fileID: 779019946264105917}
   hitMarkerDelay: 0.1
-  beamDuration: 0.1
-  muzzleFlash: {fileID: 1011518498969196876}
-  shootEmmiter: {fileID: 8481158247753177793}
+  magazineSize: 0
+  muzzleFlash: {fileID: 0}
+  range: 100
+  reloadTime: 4
+  lr: {fileID: 6169473169263498732}
+  shootEmmiter: {fileID: 0}
 --- !u!120 &6169473169263498732
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -5783,6 +5790,7 @@ MonoBehaviour:
   - {fileID: 7604364220844550966}
   - {fileID: 3991369084810239228}
   PlayerLifeText: {fileID: 1045827169526110695}
+  Camera: {fileID: 7604364220844550966}
 --- !u!1 &6823255717484255760
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,6 +6573,7 @@ MonoBehaviour:
   - {fileID: 503586429240709371}
   - {fileID: 503586429240709364}
   PlayerLifeText: {fileID: 1265422465}
+  Camera: {fileID: 503586429240709371}
 --- !u!1001 &340948543242773415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6773,15 +6782,5 @@ PrefabInstance:
 --- !u!4 &503586428276875949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6722155377206979785, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
-  m_PrefabInstance: {fileID: 6608185292547542628}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8481158247753177793 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3316863737019896997, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
-  m_PrefabInstance: {fileID: 6608185292547542628}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &1011518498969196876 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6178198941344618280, guid: 0206cbca21576f94582bd6d27830e65a, type: 3}
   m_PrefabInstance: {fileID: 6608185292547542628}
   m_PrefabAsset: {fileID: 0}

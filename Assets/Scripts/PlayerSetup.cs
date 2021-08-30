@@ -29,4 +29,7 @@ public class PlayerSetup : MonoBehaviour
 
     [Header("Player Health Settings")]
     public Text PlayerLifeText;
+
+    [Header("Player Camera")]
+    public Camera Camera;
 }

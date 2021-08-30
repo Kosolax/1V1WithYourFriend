@@ -35,10 +35,9 @@ public class GunShootRaycast : NetworkBehaviour
     [SyncVar]
     private bool isReloading = false;
 
-    private LineRenderer lr;
+    public LineRenderer lr;
 
-    [SerializeField]
-    private GameObject shootEmmiter;
+    public GameObject shootEmmiter;
 
     [SyncVar]
     private float timer;
@@ -50,37 +49,16 @@ public class GunShootRaycast : NetworkBehaviour
         StartCoroutine(ReloadCoroutine(this.reloadTime));
     }
 
-    public void SetDamage(float value)
-    {
-        this.damage = value;
-    }
-
-    public void SetFireRate(float value)
-    {
-        this.fireRate = value;
-    }
-
-    public void SetMagazineSize(float value)
-    {
-        this.magazineSize = value;
-        this.ammo = this.magazineSize;
-        this.UpdateAmmo();
-    }
-
-    public void SetRange(float value)
-    {
-        this.range = value;
-    }
-
-    public void SetReloadTime(float value)
-    {
-        this.reloadTime = value;
-    }
-
     [Command]
     public void Touched(Player target)
     {
         this.TouchedRpc(target);
+    }
+
+    public void enableScripts()
+    {
+        this.enabled = true;
+        this.lr.enabled = true;
     }
 
     private IEnumerator HitMarker()
