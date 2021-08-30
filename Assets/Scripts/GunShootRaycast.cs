@@ -12,19 +12,25 @@ public class GunShootRaycast : NetworkBehaviour
 
     public Text AmmoCounter;
 
+    public float beamDuration = 1f;
+
+    public float damage = 10f;
+
+    public float fireRate = 0f;
+
     public Camera fpsCam;
 
     public GameObject hitMarker;
 
     public float hitMarkerDelay = 0.1f;
 
-    public float beamDuration = 1f;
+    public float magazineSize = 0f;
 
     public ParticleSystem muzzleFlash;
 
-    private float damage = 10f;
+    public float range = 100f;
 
-    private float fireRate = 0f;
+    public float reloadTime = 4f;
 
     [SyncVar]
     private bool isReloading = false;
@@ -33,12 +39,6 @@ public class GunShootRaycast : NetworkBehaviour
 
     [SerializeField]
     private GameObject shootEmmiter;
-
-    private float magazineSize = 0f;
-
-    private float range = 100f;
-
-    private float reloadTime = 4f;
 
     [SyncVar]
     private float timer;
@@ -114,6 +114,28 @@ public class GunShootRaycast : NetworkBehaviour
         this.ammo -= 1;
     }
 
+    private IEnumerator ShootBeam(Vector3[] lrPoints)
+    {
+        lr.positionCount = 2;
+        lr.SetPositions(lrPoints);
+        yield return new WaitForSeconds(this.beamDuration);
+        lr.positionCount = 0;
+        Vector3[] emptyList = { };
+        lr.SetPositions(emptyList);
+    }
+
+    [Command]
+    private void ShootBeamCommand(Vector3[] lrPoints)
+    {
+        this.ShootBeamRPC(lrPoints);
+    }
+
+    [ClientRpc]
+    private void ShootBeamRPC(Vector3[] lrPoints)
+    {
+        StartCoroutine(ShootBeam(lrPoints));
+    }
+
     private void ShootLocal()
     {
         this.Shoot();
@@ -136,31 +158,15 @@ public class GunShootRaycast : NetworkBehaviour
         }
     }
 
-    private IEnumerator ShootBeam(Vector3[] lrPoints)
-    {
-        lr.positionCount = 2;
-        lr.SetPositions(lrPoints);
-        yield return new WaitForSeconds(this.beamDuration);
-        lr.positionCount = 0;
-        Vector3[] emptyList = { };
-        lr.SetPositions(emptyList);
-    }
-    [Command]
-    private void ShootBeamCommand(Vector3[] lrPoints)
-    {
-        this.ShootBeamRPC(lrPoints);
-    }
-
-    [ClientRpc]
-    private void ShootBeamRPC(Vector3[] lrPoints)
-    {
-        StartCoroutine(ShootBeam(lrPoints));
-    }
-
     [ClientRpc]
     private void ShootRpc()
     {
         this.muzzleFlash.Play();
+    }
+
+    private void Start()
+    {
+        this.lr = this.GetComponent<LineRenderer>();
     }
 
     [ClientRpc]
@@ -206,10 +212,5 @@ public class GunShootRaycast : NetworkBehaviour
         {
             this.AmmoCounter.text = this.ammo.ToString();
         }
-    }
-
-    private void Start()
-    {
-        this.lr = this.GetComponent<LineRenderer>();
     }
 }
