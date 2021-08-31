@@ -285,6 +285,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecd2b0d210a968429698078bd03a71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  Gravity: -19.62
+  JumpHeight: 3
+  MaxHealth: 100
+  Speed: 20
+  Health: 100
+  MouseSensitivity: 400
+  XRotationTransform: {fileID: 375196938}
+  YRotationTransform: {fileID: 375196936}
+  CharacterController: {fileID: 375196937}
+  GroundCheck: {fileID: 375196935}
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  PlayerTransform: {fileID: 375196938}
+  GameObjectToDisable: []
+  ComponentsToDisable: []
+--- !u!4 &375196935 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6639494177025336053, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+  m_PrefabInstance: {fileID: 375196932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &375196936 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6546300878012039783, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+  m_PrefabInstance: {fileID: 375196932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &375196937 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 6639494177544924577, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+  m_PrefabInstance: {fileID: 375196932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &375196938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6546300877947570655, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+  m_PrefabInstance: {fileID: 375196932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1023415963
 LightingSettings:
   m_ObjectHideFlags: 0

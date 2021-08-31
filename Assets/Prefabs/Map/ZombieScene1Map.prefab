@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927613047969214445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BorderWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613047969214445
 Transform:
@@ -43,12 +43,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 927613048104460466}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ZombieScene1Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613048104460466
 Transform:
@@ -79,12 +79,12 @@ GameObject:
   - component: {fileID: 927613048306397449}
   - component: {fileID: 927613048306397448}
   - component: {fileID: 927613048306397451}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613048306397450
 Transform:
@@ -150,12 +150,12 @@ GameObject:
   - component: {fileID: 927613048963172082}
   - component: {fileID: 927613048963172093}
   - component: {fileID: 927613048963172092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WestWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613048963172095
 Transform:
@@ -245,12 +245,12 @@ GameObject:
   - component: {fileID: 927613049225270036}
   - component: {fileID: 927613049225270039}
   - component: {fileID: 927613049225270038}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NorthWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613049225270033
 Transform:
@@ -340,12 +340,12 @@ GameObject:
   - component: {fileID: 927613049658598500}
   - component: {fileID: 927613049658598503}
   - component: {fileID: 927613049658598502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EastWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613049658598497
 Transform:
@@ -435,12 +435,12 @@ GameObject:
   - component: {fileID: 927613049774667970}
   - component: {fileID: 927613049774667981}
   - component: {fileID: 927613049774667980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SouthWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613049774667983
 Transform:
@@ -530,12 +530,12 @@ GameObject:
   - component: {fileID: 927613049847081177}
   - component: {fileID: 927613049847081176}
   - component: {fileID: 927613049847081179}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &927613049847081182
 Transform:

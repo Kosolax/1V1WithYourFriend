@@ -48,9 +48,9 @@ public class ModNetworkManager : NetworkManager
 
         if (gameObject != null)
         {
-            Player player = gameObject.GetComponent<Player>();
             NetworkServer.Spawn(gameObject);
             NetworkServer.AddPlayerForConnection(conn, gameObject);
+            BasePlayer player = gameObject.GetComponent<BasePlayer>();
             player.SetGravity(this.LobbyManager.Gravity);
             player.SetJumpHeight(this.LobbyManager.JumpHeight);
             player.SetMaxHealth(this.LobbyManager.MaxHealth);

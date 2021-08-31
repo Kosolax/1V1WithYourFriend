@@ -7,10 +7,7 @@ public class Player : BasePlayer
 {
     [Header("Player Health Settings")]
     public Text PlayerLifeText;
-    private bool hasFinishInitialisation;
-    private PlayerLookManager playerLookManager;
     private GunShootRaycast gunShootRaycast;
-    private PlayerMovementManager playerMovementManager;
 
     public bool IsDead { get; set; }
 
@@ -35,50 +32,17 @@ public class Player : BasePlayer
         GameManager.AddPlayer(netId, this);
     }
 
-    private void Initialise()
+    protected override void Initialise()
     {
-        this.hasFinishInitialisation = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        this.playerMovementManager = new PlayerMovementManager(this.CharacterController, this.GroundCheck, this.GroundMask, this, this.PlayerTransform);
-        this.playerLookManager = new PlayerLookManager(this, this.XRotationTransform, this.YRotationTransform);
+        base.Initialise();
         this.gunShootRaycast = new GunShootRaycast();
-        this.InitialisePlayer();
         this.hasFinishInitialisation = true;
     }
 
-    private void InitialisePlayer()
+    protected override void InitialisePlayer()
     {
-        if (!this.isLocalPlayer)
-        {
-            for (int i = 0; i < this.ComponentsToDisable.Length; i++)
-            {
-                this.ComponentsToDisable[i].enabled = false;
-            }
-
-            for (int i = 0; i < GameObjectToDisable.Length; i++)
-            {
-                GameObjectToDisable[i].SetActive(false);
-            }
-        }
-        else
-        {
-            //disable main camera on player join
-            sceneCamera = Camera.main;
-            if (sceneCamera != null)
-            {
-                sceneCamera.gameObject.SetActive(false);
-            }
-        }
-
+        base.InitialisePlayer();
         this.Reset();
-    }
-
-    private void OnDisable()
-    {
-        if (sceneCamera != null)
-        {
-            sceneCamera.gameObject.SetActive(true);
-        }
     }
 
     private void Reset()
@@ -111,32 +75,6 @@ public class Player : BasePlayer
         {
             this.Die();
         }
-    }
-
-    private void Start()
-    {
-        this.Initialise();
-    }
-
-    private void Update()
-    {
-        // We don't want our action to be applied on others players
-        if (!this.isLocalPlayer || !this.hasFinishInitialisation || this.IsDead)
-        {
-            return;
-        }
-
-        // NOTE : Here we put everything that need to RUN even if we are in a menu
-        this.playerMovementManager.ApplyGravity();
-
-        if (MainMenu.isOn)
-        {
-            return;
-        }
-
-        // NOTE : Here we put everything that need to STOP when we are in a menu
-        this.playerMovementManager.MoveOrAndJump();
-        this.playerLookManager.RotateCamera();
     }
 
     [ClientRpc]
