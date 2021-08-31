@@ -14,12 +14,16 @@ public class Mod : MonoBehaviour
 
     public List<string> SceneNames;
 
+    public PlayerType PlayerType;
+
     public void DisplayMaps()
     {
         foreach (Transform child in this.Container.transform)
         {
             GameObject.Destroy(child.gameObject);
         }
+
+        this.LobbyManager.PlayerType = this.PlayerType;
 
         foreach (string sceneName in this.SceneNames)
         {

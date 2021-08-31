@@ -503,6 +503,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 684308583}
     - target: {fileID: 2049275985296907593, guid: 0642ee7545d284b44bd92b4f4125eba2, type: 3}
+      propertyPath: PlayerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049275985296907593, guid: 0642ee7545d284b44bd92b4f4125eba2, type: 3}
       propertyPath: LobbyManager
       value: 
       objectReference: {fileID: 1637531350}
@@ -688,9 +692,10 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 503586429310425935, guid: 91d3fab5b3a7fd049b2618d7dabb5d20, type: 3}
+  - {fileID: 6546300877947570653, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
   fightModPlayerPrefab: {fileID: 503586429310425935, guid: 91d3fab5b3a7fd049b2618d7dabb5d20, type: 3}
   LobbyManager: {fileID: 1637531350}
-  zombieModPlayerPrefab: {fileID: 503586429310425935, guid: 91d3fab5b3a7fd049b2618d7dabb5d20, type: 3}
+  zombieModPlayerPrefab: {fileID: 6546300877947570653, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
 --- !u!114 &1512801149
 MonoBehaviour:
   m_ObjectHideFlags: 0
