@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Player : NetworkBehaviour
 {
     [Header("Player Statistics")]
-    public float Gravity = -19.62f;
+    [SyncVar] public float Gravity = -19.62f;
+    [SyncVar] public float JumpHeight = 3f;
+    [SyncVar] public float MaxHealth = 100;
+    [SyncVar] public float Speed = 20f;
     public float Health = 100;
-    public float JumpHeight = 3f;
-    public float MaxHealth = 100;
     public float MouseSensitivity = 400f;
-    public float Speed = 20f;
 
     [Header("Player Rotation Settings")]
     public Transform XRotationTransform;
@@ -34,6 +34,30 @@ public class Player : NetworkBehaviour
     private GunShootRaycast gunShootRaycast;
     private PlayerMovementManager playerMovementManager;
     private Camera sceneCamera;
+
+    [ClientRpc]
+    public void SetJumpHeight(float jumpHeight)
+    {
+        this.JumpHeight = jumpHeight;
+    }
+
+    [ClientRpc]
+    public void SetMaxHealth(float maxHealth)
+    {
+        this.MaxHealth = maxHealth;
+    }
+
+    [ClientRpc]
+    public void SetGravity(float gravity)
+    {
+        this.Gravity = gravity;
+    }
+
+    [ClientRpc]
+    public void SetSpeed(float speed)
+    {
+        this.Speed = speed;
+    }
 
     public bool IsDead { get; set; }
 

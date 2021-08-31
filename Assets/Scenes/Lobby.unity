@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1637531350}
+    - target: {fileID: 2279852264418302919, guid: 04ba922dbaf8c7640b593827016dc295, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
     - target: {fileID: 2279852264948054351, guid: 04ba922dbaf8c7640b593827016dc295, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -764,18 +768,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a00b25f71d63e44a3ffdec5e9eea1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: -19
+  Gravity: 0
   GravityText: {fileID: 289692664}
   IpInputField: {fileID: 339226323}
-  JumpHeight: 20
+  JumpHeight: 0
   JumpHeightText: {fileID: 960633760}
-  MaxHealth: 100
+  MaxHealth: 0
   MaxHealthText: {fileID: 158465913}
   NetworkManager: {fileID: 1512801148}
   NextButton: {fileID: 769851170}
   PlayerType: 0
   SceneName: 
-  Speed: 20
+  Speed: 0
   SpeedText: {fileID: 1329492919}
 --- !u!4 &1637531351
 Transform:

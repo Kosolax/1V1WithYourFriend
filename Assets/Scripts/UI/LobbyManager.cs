@@ -115,13 +115,13 @@ public class LobbyManager : MonoBehaviour
 
     public void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
         if (Instance == null)
         {
+            DontDestroyOnLoad(this.gameObject);
             Instance = this;
             this.IpInputField.text = "localhost";
         }
-        else
+        else if (Instance != this)
         {
             Destroy(this);
         }
