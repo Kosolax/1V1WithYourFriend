@@ -213,6 +213,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 375196934, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+      propertyPath: ComponentsToDisable.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 375196934, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+      propertyPath: ComponentsToDisable.Array.data[0]
+      value: 
+      objectReference: {fileID: 375196934}
+    - target: {fileID: 375196934, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+      propertyPath: ComponentsToDisable.Array.data[1]
+      value: 
+      objectReference: {fileID: 375196933}
     - target: {fileID: 6326874225687273808, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
       propertyPath: sceneId
       value: 1136507374
@@ -265,62 +277,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6639494176907218690, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
---- !u!1 &375196933 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6546300877947570653, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+--- !u!81 &375196933 stripped
+AudioListener:
+  m_CorrespondingSourceObject: {fileID: 6546300878012039782, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
   m_PrefabInstance: {fileID: 375196932}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &375196934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375196933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ecd2b0d210a968429698078bd03a71d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  Gravity: -19.62
-  JumpHeight: 3
-  MaxHealth: 100
-  Speed: 20
-  Health: 100
-  MouseSensitivity: 400
-  XRotationTransform: {fileID: 375196938}
-  YRotationTransform: {fileID: 375196936}
-  CharacterController: {fileID: 375196937}
-  GroundCheck: {fileID: 375196935}
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 64
-  PlayerTransform: {fileID: 375196938}
-  GameObjectToDisable: []
-  ComponentsToDisable: []
---- !u!4 &375196935 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6639494177025336053, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
-  m_PrefabInstance: {fileID: 375196932}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &375196936 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6546300878012039783, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
-  m_PrefabInstance: {fileID: 375196932}
-  m_PrefabAsset: {fileID: 0}
---- !u!143 &375196937 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 6639494177544924577, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
-  m_PrefabInstance: {fileID: 375196932}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &375196938 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6546300877947570655, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
+--- !u!20 &375196934 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6546300878012039785, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}
   m_PrefabInstance: {fileID: 375196932}
   m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1023415963
