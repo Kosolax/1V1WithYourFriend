@@ -1,20 +1,10 @@
-using System;
-using System.Collections.Generic;
-
 using Mirror;
 
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : NetworkBehaviour
 {
-    [Header("Settings to match player options, modEnum and maps")]
-    [Tooltip("We use playerSetup index to match it with ModeEnum so be careful. NOTE THAT INDEX 0 MUST STAY EMPTY")]
-    public List<PlayerSetup> PlayerSetups;
-    public List<string> SceneNames;
-    public List<ModEnum> ModEnumsToMapSceneNames;
-
     [Header("Player Statistics")]
     public float Gravity = -19.62f;
     public float Health = 100;
@@ -39,8 +29,6 @@ public class Player : NetworkBehaviour
 
     [Header("Player Health Settings")]
     public Text PlayerLifeText;
-
-
     private bool hasFinishInitialisation;
     private PlayerLookManager playerLookManager;
     private GunShootRaycast gunShootRaycast;
@@ -65,12 +53,6 @@ public class Player : NetworkBehaviour
 
     public override void OnStartClient()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        var index = this.SceneNames.IndexOf(scene.name);
-        if (index >= 0)
-        {
-            PlayerSetting.ModEnum = this.ModEnumsToMapSceneNames[index];
-        }
         base.OnStartClient();
         uint netId = this.GetComponent<NetworkIdentity>().netId;
         GameManager.AddPlayer(netId, this);
@@ -80,48 +62,11 @@ public class Player : NetworkBehaviour
     {
         this.hasFinishInitialisation = false;
         Cursor.lockState = CursorLockMode.Locked;
-        this.PreInitialisePlayerBasedOnMod();
         this.playerMovementManager = new PlayerMovementManager(this.CharacterController, this.GroundCheck, this.GroundMask, this, this.PlayerTransform);
         this.playerLookManager = new PlayerLookManager(this, this.XRotationTransform, this.YRotationTransform);
         this.gunShootRaycast = new GunShootRaycast();
         this.InitialisePlayer();
         this.hasFinishInitialisation = true;
-    }
-
-    private void PreInitialisePlayerBasedOnMod()
-    {
-        if (PlayerSetting.ModEnum != ModEnum.Default)
-        {
-            PlayerSetup modPlayer = this.PlayerSetups[(int) PlayerSetting.ModEnum];
-            this.Gravity = modPlayer.Gravity;
-            this.Health = modPlayer.Health;
-            this.JumpHeight = modPlayer.JumpHeight;
-            this.MaxHealth = modPlayer.MaxHealth;
-            this.MouseSensitivity = modPlayer.MouseSensitivity;
-            this.Speed = modPlayer.Speed;
-            this.XRotationTransform = modPlayer.XRotationTransform;
-            this.YRotationTransform = modPlayer.YRotationTransform;
-            this.CharacterController = modPlayer.CharacterController;
-            this.GroundCheck = modPlayer.GroundCheck;
-            this.GroundMask = modPlayer.GroundMask;
-            this.PlayerTransform = modPlayer.PlayerTransform;
-            this.GameObjectToDisable = modPlayer.GameObjectToDisable;
-            this.ComponentsToDisable = modPlayer.ComponentsToDisable;
-            this.PlayerLifeText = modPlayer.PlayerLifeText;
-            this.GetComponent<NetworkTransformChild>().target = modPlayer.Camera.transform;
-
-            for (int i = 0; i < this.PlayerSetups.Count; i++)
-            {
-                if (i != 0)
-                {
-                    this.PlayerSetups[i].gameObject.SetActive(i == (int) PlayerSetting.ModEnum);
-                }
-            }
-        }
-        else
-        {
-            this.gameObject.SetActive(false);
-        }
     }
 
     private void InitialisePlayer()
