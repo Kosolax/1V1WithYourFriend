@@ -4,14 +4,14 @@ public class PlayerLookManager
 {
     private float xRotation = 0f;
 
-    public PlayerLookManager(Player player, Transform xRotationTransform, Transform yRotationTransform)
+    public PlayerLookManager(BasePlayer player, Transform xRotationTransform, Transform yRotationTransform)
     {
         this.Player = player;
         this.XRotationTransform = xRotationTransform;
         this.YRotationTransform = yRotationTransform;
     }
 
-    public Player Player { get; set; }
+    public BasePlayer Player { get; set; }
 
     public Transform XRotationTransform { get; set; }
 

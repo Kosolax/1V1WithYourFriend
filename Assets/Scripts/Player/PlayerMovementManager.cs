@@ -8,7 +8,7 @@ public class PlayerMovementManager
 
     private Vector3 velocity;
 
-    public PlayerMovementManager(CharacterController characterController, Transform groundCheck, LayerMask groundMask, Player player, Transform playerTransform)
+    public PlayerMovementManager(CharacterController characterController, Transform groundCheck, LayerMask groundMask, BasePlayer player, Transform playerTransform)
     {
         this.CharacterController = characterController;
         this.GroundCheck = groundCheck;
@@ -23,7 +23,7 @@ public class PlayerMovementManager
 
     public LayerMask GroundMask { get; set; }
 
-    public Player Player { get; set; }
+    public BasePlayer Player { get; set; }
 
     public Transform PlayerTransform { get; set; }
 
