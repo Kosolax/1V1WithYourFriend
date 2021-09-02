@@ -58,8 +58,8 @@ public class ModNetworkManager : NetworkManager
                 zombiePlayer.SetJumpHeight(this.LobbyManager.JumpHeight);
                 zombiePlayer.SetMaxHealth(this.LobbyManager.MaxHealth);
                 zombiePlayer.SetSpeed(this.LobbyManager.Speed);
-                zombiePlayer.SetMoney(this.LobbyManager.Speed);
-                zombiePlayer.SetMoneyPerSecond(this.LobbyManager.Speed);
+                zombiePlayer.SetMoney(this.LobbyManager.Money);
+                zombiePlayer.SetMoneyPerSecond(this.LobbyManager.MoneyPerSecond);
                 break;
         }
     }
