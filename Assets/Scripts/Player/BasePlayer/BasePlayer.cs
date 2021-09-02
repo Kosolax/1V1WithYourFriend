@@ -55,9 +55,14 @@ public class BasePlayer : NetworkBehaviour
         this.Speed = speed;
     }
 
-    private void Start()
+    protected virtual void StartOverridable()
     {
         this.Initialise();
+    }
+
+    private void Start()
+    {
+        this.StartOverridable();
     }
 
     protected virtual void Initialise()
@@ -102,7 +107,7 @@ public class BasePlayer : NetworkBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void UpdateOverridable()
     {
         // We don't want our action to be applied on others players
         if (!this.isLocalPlayer || !this.hasFinishInitialisation)
@@ -121,5 +126,10 @@ public class BasePlayer : NetworkBehaviour
         // NOTE : Here we put everything that need to STOP when we are in a menu
         this.playerMovementManager.MoveOrAndJump();
         this.playerLookManager.RotateCamera();
+    }
+
+    private void Update()
+    {
+        this.UpdateOverridable();
     }
 }

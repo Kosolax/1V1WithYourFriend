@@ -19,6 +19,12 @@ public class Player : BasePlayer
         this.Respawn();
     }
 
+    protected override void StartOverridable()
+    {
+        base.StartOverridable();
+        this.Die();
+    }
+
     [Command]
     public void ITookDamage(float damage)
     {

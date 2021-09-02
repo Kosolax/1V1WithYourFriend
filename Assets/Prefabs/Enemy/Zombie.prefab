@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3564005890040822224}
   - component: {fileID: 3564005890040822227}
   - component: {fileID: 3564005890040822226}
-  - component: {fileID: 3564005890040822231}
   - component: {fileID: 3564005888528849494}
   - component: {fileID: 3564005888528849493}
+  - component: {fileID: 595647621}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -122,21 +122,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3564005890040822231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3564005890040822061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11a9882c6fb35c642a6d8f5748c4545c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ZombieSetup: {fileID: 0}
-  agent: {fileID: 3564005890040822226}
-  speed: 5
 --- !u!114 &3564005888528849494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
+  clientAuthority: 1
   sendInterval: 0.05
   syncPosition: 1
   syncRotation: 1
@@ -183,3 +168,22 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &595647621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564005890040822061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7b3bf642a122240b94987fbf3ae07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  ZombieSetup: {fileID: 0}
+  Agent: {fileID: 3564005890040822226}
+  MaxHealth: 100
+  Speed: 10
+  Health: 100

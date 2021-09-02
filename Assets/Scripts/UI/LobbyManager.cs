@@ -34,6 +34,18 @@ public class LobbyManager : MonoBehaviour
 
     public TMP_InputField SpeedText;
 
+    public float Money;
+
+    public TMP_InputField MoneyText;
+
+    public float MoneyPerSecond;
+
+    public TMP_InputField MoneyPerSecondText;
+
+    public GameObject FightPanel;
+
+    public GameObject ZombiePanel;
+
     public void Host()
     {
         this.NetworkManager.onlineScene = this.SceneName;
@@ -79,6 +91,21 @@ public class LobbyManager : MonoBehaviour
         this.JumpHeightText.text = this.JumpHeight.ToString();
     }
 
+    public void SelectGoodPanel()
+    {
+        switch (this.PlayerType)
+        {
+            case PlayerType.Fight:
+                this.FightPanel.SetActive(true);
+                this.ZombiePanel.SetActive(false);
+                break;
+            case PlayerType.Zombie:
+                this.FightPanel.SetActive(false);
+                this.ZombiePanel.SetActive(true);
+                break;
+        }
+    }
+
     public void SetMap(string sceneName)
     {
         this.SceneName = sceneName;
@@ -111,6 +138,34 @@ public class LobbyManager : MonoBehaviour
         }
 
         this.SpeedText.text = this.Speed.ToString();
+    }
+
+    public void SetMoney(string money)
+    {
+        if (float.TryParse(money, out float floatMoney))
+        {
+            this.Money = floatMoney;
+        }
+        else
+        {
+            this.Money = 0;
+        }
+
+        this.MoneyText.text = this.Money.ToString();
+    }
+
+    public void SetMoneyPerSecond(string moneyPerSecond)
+    {
+        if (float.TryParse(moneyPerSecond, out float floatMoneyPerSecond))
+        {
+            this.MoneyPerSecond = floatMoneyPerSecond;
+        }
+        else
+        {
+            this.MoneyPerSecond = 0;
+        }
+
+        this.MoneyPerSecondText.text = this.MoneyPerSecond.ToString();
     }
 
     public void Start()
