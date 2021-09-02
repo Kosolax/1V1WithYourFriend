@@ -830,11 +830,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  Gravity: -19.62
-  JumpHeight: 3
-  MaxHealth: 100
-  Speed: 20
-  Health: 100
+  Gravity: 0
+  JumpHeight: 0
+  MaxHealth: 0
+  Speed: 0
+  Health: 0
   MouseSensitivity: 400
   XRotationTransform: {fileID: 6546300877947570655}
   YRotationTransform: {fileID: 6546300878012039783}
@@ -849,8 +849,9 @@ MonoBehaviour:
   ComponentsToDisable:
   - {fileID: 6546300878012039785}
   - {fileID: 6546300878012039782}
-  Money: 100
-  MoneyPerSecond: 1
+  Money: 0
+  MoneyPerSecond: 0
+  SpawnIndex: 0
 --- !u!1 &6546300878012039780
 GameObject:
   m_ObjectHideFlags: 0

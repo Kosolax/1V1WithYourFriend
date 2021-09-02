@@ -4085,7 +4085,7 @@ MonoBehaviour:
   SceneName: 
   Speed: 20
   SpeedText: {fileID: 1329492919}
-  Money: 100
+  Money: 2000
   MoneyText: {fileID: 1772181736}
   MoneyPerSecond: 1
   MoneyPerSecondText: {fileID: 1129743129}
