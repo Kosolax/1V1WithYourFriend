@@ -17,7 +17,13 @@ public class ZombiePlayerMoneyManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             this.ZombiePlayer.Money += this.ZombiePlayer.MoneyPerSecond;
+            this.ZombiePlayer.MoneyText.text = this.ZombiePlayer.Money.ToString();
         }
+    }
+
+    public void AddMoneyPerSecond(float moneyEarn)
+    {
+        this.ZombiePlayer.MoneyPerSecond += moneyEarn;
     }
 
     public void LoseMoney(float amountToLose)
@@ -25,6 +31,7 @@ public class ZombiePlayerMoneyManager : MonoBehaviour
         if (this.ZombiePlayer.Money - amountToLose >= 0)
         {
             this.ZombiePlayer.Money -= amountToLose;
+            this.ZombiePlayer.MoneyText.text = this.ZombiePlayer.Money.ToString();
         }
     }
 }

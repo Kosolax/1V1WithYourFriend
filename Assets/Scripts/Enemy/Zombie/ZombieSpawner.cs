@@ -25,9 +25,11 @@ public class ZombieSpawner : NetworkBehaviour
         {
             var i = Random.Range(0, this.ZombieSpawns.Count);
             GameObject instantiatedZombie = Instantiate(ZombiePrefab, this.ZombieSpawns[i].transform.position, Quaternion.identity);
+            Zombie zombie = instantiatedZombie.GetComponent<Zombie>();
+            zombie.ZombieSetup = this.ZombieSetup;
             this.ZombiePlayer.ZombiePlayerMoneyManager.LoseMoney(this.Cost);
+            this.ZombiePlayer.ZombiePlayerMoneyManager.AddMoneyPerSecond(zombie.MoneyGain);
             NetworkServer.Spawn(instantiatedZombie);
-            instantiatedZombie.GetComponent<Zombie>().ZombieSetup = this.ZombieSetup;
         }
     }
 }
