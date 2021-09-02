@@ -28,7 +28,7 @@ public class Zombie : NetworkBehaviour
         }
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void TakeDamage(float damage)
     {
         this.UpdateHpForOthers(damage);
@@ -37,17 +37,11 @@ public class Zombie : NetworkBehaviour
     [ClientRpc]
     private void UpdateHpForOthers(float damage)
     {
-        ZombieGameManager.Zombies[this.name].SetHealth(damage);
-    }
-
-    private void SetHealth(float damage)
-    {
         this.Health -= damage;
         if (this.Health <= 0)
         {
-            uint netId = this.GetComponent<NetworkIdentity>().netId;
-            ZombieGameManager.RemoveZombie(netId);
             NetworkServer.UnSpawn(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -30,9 +30,4 @@ public class ZombieSpawner : NetworkBehaviour
             instantiatedZombie.GetComponent<Zombie>().ZombieSetup = this.ZombieSetup;
         }
     }
-
-    public void SpawnZombieCommand()
-    {
-
-    }
 }
