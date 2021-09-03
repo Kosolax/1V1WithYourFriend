@@ -229,7 +229,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   ZombiePrefab: {fileID: 3564005890040822061, guid: 104fe449baa741947a78cab8653082f0, type: 3}
-  Cost: 40
+  Cost: 100
   ZombiePool: {fileID: 0}
 --- !u!1 &927613048104460477
 GameObject:
