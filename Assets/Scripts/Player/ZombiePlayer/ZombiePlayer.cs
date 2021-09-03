@@ -9,14 +9,10 @@ using UnityEngine;
 public class ZombiePlayer : BasePlayer
 {
     [SyncVar] public float Money;
-    [SyncVar] public float MoneyPerSecond;
-
-    public IWeapon Weapon;
 
     public int SpawnIndex;
 
     public TextMeshProUGUI MoneyText;
-    public TextMeshProUGUI MoneyPerSecondText;
     public TextMeshProUGUI HealthText;
 
     public ZombiePlayerMoneyManager ZombiePlayerMoneyManager { get; set; }
@@ -27,20 +23,12 @@ public class ZombiePlayer : BasePlayer
         this.Money = money;
     }
 
-    [ClientRpc]
-    public void SetMoneyPerSecond(float moneyPerSecond)
-    {
-        this.MoneyPerSecond = moneyPerSecond;
-    }
-
     protected override void StartOverridable()
     {
         base.StartOverridable();
         this.MoneyText.text = this.Money.ToString();
-        this.MoneyPerSecondText.text = this.MoneyPerSecond.ToString();
         this.Health = this.MaxHealth;
         this.HealthText.text = this.Health.ToString();
-        this.Weapon = this.GetComponentInChildren<RaycastWeapon>();
         this.CharacterController.enabled = false;
         this.SpawnIndex = (FindObjectsOfType<ZombiePlayer>().Length - 1) % NetworkManager.startPositions.Count;
         Transform spawnPoint = NetworkManager.startPositions[this.SpawnIndex];
@@ -55,11 +43,6 @@ public class ZombiePlayer : BasePlayer
         base.Initialise();
         this.ZombiePlayerMoneyManager = new ZombiePlayerMoneyManager(this);
         this.hasFinishInitialisation = true;
-    }
-
-    public void StartGame()
-    {
-        this.StartCoroutine(this.ZombiePlayerMoneyManager.EarnMoney());
     }
 
     protected override void UpdateOverridable()
@@ -79,12 +62,6 @@ public class ZombiePlayer : BasePlayer
         }
 
         // NOTE : Here we put everything that need to STOP when we are in a menu
-        if (Input.GetButtonDown("Fire1") && this.Weapon != null && this.Weapon.CanShoot())
-        {
-            this.Weapon.Shoot(this);
-        }
-
-        this.MoneyPerSecondText.text = this.MoneyPerSecond.ToString();
     }
 
     [Command]

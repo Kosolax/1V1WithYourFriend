@@ -10,7 +10,6 @@ using UnityEngine.AI;
 
 public class Zombie : NetworkBehaviour
 {
-    public ZombieSetup ZombieSetup;
     public NavMeshAgent Agent;
     public float MaxHealth = 100;
     public float Speed = 20f;
@@ -39,10 +38,10 @@ public class Zombie : NetworkBehaviour
 
     private void Update()
     {
-        if (this.ZombieSetup != null && this.ZombieSetup.dude != null)
-        {
-            this.Agent.SetDestination(this.ZombieSetup.dude.transform.position);
-        }
+        //if (this.ZombieSetup != null && this.ZombieSetup.dude != null)
+        //{
+        //    this.Agent.SetDestination(this.ZombieSetup.dude.transform.position);
+        //}
     }
 
     [Command(requiresAuthority = false)]
@@ -64,12 +63,12 @@ public class Zombie : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            this.IsNear = true;
-            ZombiePlayer zombiePlayer = other.GetComponent<ZombiePlayer>();
-            zombiePlayer.TakeDamage(this.Damage);
-        }   
+        this.Attack(other);
+    }
+
+    private void Attack(Collider other)
+    {
+        this.Attack(other);
     }
 
     private void OnTriggerStay(Collider other)

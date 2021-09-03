@@ -11,27 +11,18 @@ public class ZombiePlayerMoneyManager : MonoBehaviour
 
     public ZombiePlayer ZombiePlayer { get; set; }
 
-    public IEnumerator EarnMoney()
+    public void LoseMoney(float amount)
     {
-        while (ZombieGameManager.IsStarted)
+        if (this.ZombiePlayer.Money - amount >= 0)
         {
-            yield return new WaitForSeconds(1);
-            this.ZombiePlayer.Money += this.ZombiePlayer.MoneyPerSecond;
+            this.ZombiePlayer.Money -= amount;
             this.ZombiePlayer.MoneyText.text = this.ZombiePlayer.Money.ToString();
         }
     }
 
-    public void AddMoneyPerSecond(float moneyEarn)
+    public void AddMoney(float amount)
     {
-        this.ZombiePlayer.MoneyPerSecond += moneyEarn;
-    }
-
-    public void LoseMoney(float amountToLose)
-    {
-        if (this.ZombiePlayer.Money - amountToLose >= 0)
-        {
-            this.ZombiePlayer.Money -= amountToLose;
-            this.ZombiePlayer.MoneyText.text = this.ZombiePlayer.Money.ToString();
-        }
+        this.ZombiePlayer.Money += amount;
+        this.ZombiePlayer.MoneyText.text = this.ZombiePlayer.Money.ToString();
     }
 }
