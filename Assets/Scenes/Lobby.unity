@@ -4072,10 +4072,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a00b25f71d63e44a3ffdec5e9eea1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: -19
+  Gravity: -9.91
   GravityText: {fileID: 289692664}
   IpInputField: {fileID: 339226323}
-  JumpHeight: 20
+  JumpHeight: 2
   JumpHeightText: {fileID: 960633760}
   MaxHealth: 3
   MaxHealthText: {fileID: 158465913}
@@ -4083,11 +4083,11 @@ MonoBehaviour:
   NextButton: {fileID: 769851170}
   PlayerType: 0
   SceneName: 
-  Speed: 20
+  Speed: 10
   SpeedText: {fileID: 1329492919}
-  Money: 2000
+  Money: 400
   MoneyText: {fileID: 1772181736}
-  MoneyPerSecond: 1
+  MoneyPerSecond: 10
   MoneyPerSecondText: {fileID: 1129743129}
   FightPanel: {fileID: 538449880}
   ZombiePanel: {fileID: 290800630}

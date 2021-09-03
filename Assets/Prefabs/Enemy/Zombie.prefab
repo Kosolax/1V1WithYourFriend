@@ -187,7 +187,7 @@ MonoBehaviour:
   ZombieSetup: {fileID: 0}
   Agent: {fileID: 3564005890040822226}
   MaxHealth: 100
-  Speed: 20
+  Speed: 8
   Health: 100
   Acceleration: 2000
   AngularSpeed: 100000
