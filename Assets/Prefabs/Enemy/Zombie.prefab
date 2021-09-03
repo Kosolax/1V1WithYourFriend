@@ -186,7 +186,7 @@ MonoBehaviour:
   syncInterval: 0.1
   ZombieSetup: {fileID: 0}
   Agent: {fileID: 3564005890040822226}
-  MaxHealth: 100
+  MaxHealth: 1
   Speed: 8
   Health: 100
   Acceleration: 2000

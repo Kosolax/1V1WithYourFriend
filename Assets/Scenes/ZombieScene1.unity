@@ -1514,6 +1514,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1982098993, guid: 29f6e30fd541b6743b26e3f2dfe0f594, type: 3}
+      propertyPath: Cost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982098993, guid: 29f6e30fd541b6743b26e3f2dfe0f594, type: 3}
       propertyPath: ZombieSetup
       value: 
       objectReference: {fileID: 1625854314}
