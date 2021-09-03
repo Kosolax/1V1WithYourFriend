@@ -225,9 +225,9 @@ MonoBehaviour:
   syncInterval: 0.1
   ZombieSetup: {fileID: 0}
   ZombieSpawns:
-  - {fileID: 3462337220595690606}
-  - {fileID: 1380367024}
-  - {fileID: 2470467467679937801}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ZombiePrefab: {fileID: 3564005890040822061, guid: 104fe449baa741947a78cab8653082f0, type: 3}
   Cost: 40
   ZombiePool: {fileID: 0}
