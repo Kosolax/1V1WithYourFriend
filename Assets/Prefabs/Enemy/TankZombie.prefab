@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 595647621}
   - component: {fileID: 2781279137388668405}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: TankZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f76d9b92e8361d048842673a93bba22e, type: 2}
+  - {fileID: 2100000, guid: c1fb680117877c048b56a1d0b346f85b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
   sceneId: 0
   serverOnly: 0
   visible: 0
-  m_AssetId: 104fe449baa741947a78cab8653082f0
+  m_AssetId: 08df2c864d79f7d428d901f4011acc9b
   hasSpawned: 0
 --- !u!114 &3564005888528849493
 MonoBehaviour:
@@ -191,12 +191,12 @@ MonoBehaviour:
   ColliderToAttack: {fileID: 2781279137388668405}
   Damage: 1
   DelayDamage: 0.5
-  Health: 1
+  Health: 150
   IsNear: 0
   MaxHealth: 1
   MoneyGain: 1
   PlayerToFollow: {fileID: 0}
-  Speed: 7
+  Speed: 5
 --- !u!135 &2781279137388668405
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f76d9b92e8361d048842673a93bba22e, type: 2}
+  - {fileID: 2100000, guid: c1fb680117877c048b56a1d0b346f85b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

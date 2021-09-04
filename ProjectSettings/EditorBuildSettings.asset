@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/ZombieScene2.unity
+    guid: 1af3ac3cab0acc046808cb58832fd174
+  - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 71cec5fead39d7a429229a4cb2306e01
   - enabled: 1
