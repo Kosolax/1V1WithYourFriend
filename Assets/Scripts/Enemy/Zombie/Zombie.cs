@@ -29,7 +29,21 @@ public class Zombie : NetworkBehaviour
 
     public GameObject PlayerToFollow;
 
+    [SyncVar]
     public float Speed = 20f;
+
+    [Command(requiresAuthority = false)]
+    public void SetSpeed()
+    {
+        this.SetSpeedRpc();
+    }
+
+    [ClientRpc]
+    public void SetSpeedRpc()
+    {
+        this.Speed *= 1.5f;
+        this.Agent.speed = this.Speed;
+    }
 
     private float currentDelayDamage;
 
@@ -38,10 +52,15 @@ public class Zombie : NetworkBehaviour
     {
         this.UpdateHpForOthers(damage);
     }
-
+    
     private void Attack(Collider other)
     {
-        this.Attack(other);
+        if (other.tag == "Player")
+        {
+            this.IsNear = true;
+            ZombiePlayer zombiePlayer = other.GetComponent<ZombiePlayer>();
+            zombiePlayer.TakeDamage(this.Damage);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

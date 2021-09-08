@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 using Mirror;
 
@@ -30,11 +31,10 @@ public class ZombiePlayer : BasePlayer
         this.Health = this.MaxHealth;
         this.HealthText.text = this.Health.ToString();
         this.CharacterController.enabled = false;
-        this.SpawnIndex = (FindObjectsOfType<ZombiePlayer>().Length - 1) % NetworkManager.startPositions.Count;
+        var localIndex = (FindObjectsOfType<ZombiePlayer>()).ToList().IndexOf(this);
+        this.SpawnIndex = localIndex % NetworkManager.startPositions.Count;
         Transform spawnPoint = NetworkManager.startPositions[this.SpawnIndex];
-
         this.transform.position = spawnPoint.position;
-        this.transform.rotation = spawnPoint.rotation;
         this.CharacterController.enabled = true;
     }
 
@@ -64,7 +64,7 @@ public class ZombiePlayer : BasePlayer
         // NOTE : Here we put everything that need to STOP when we are in a menu
     }
 
-    [Command]
+    [Command(requiresAuthority = false)]
     public void TakeDamage(float damage)
     {
         this.UpdateHpForOthers(damage);

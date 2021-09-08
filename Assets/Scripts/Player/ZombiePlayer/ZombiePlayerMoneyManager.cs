@@ -2,7 +2,7 @@ using System.Collections;
 
 using UnityEngine;
 
-public class ZombiePlayerMoneyManager : MonoBehaviour
+public class ZombiePlayerMoneyManager
 {
     public ZombiePlayerMoneyManager(ZombiePlayer zombiePlayer)
     {

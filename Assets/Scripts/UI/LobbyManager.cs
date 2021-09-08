@@ -38,10 +38,6 @@ public class LobbyManager : MonoBehaviour
 
     public TMP_InputField MoneyText;
 
-    public float MoneyPerSecond;
-
-    public TMP_InputField MoneyPerSecondText;
-
     public GameObject FightPanel;
 
     public GameObject ZombiePanel;
@@ -152,20 +148,6 @@ public class LobbyManager : MonoBehaviour
         }
 
         this.MoneyText.text = this.Money.ToString();
-    }
-
-    public void SetMoneyPerSecond(string moneyPerSecond)
-    {
-        if (float.TryParse(moneyPerSecond, out float floatMoneyPerSecond))
-        {
-            this.MoneyPerSecond = floatMoneyPerSecond;
-        }
-        else
-        {
-            this.MoneyPerSecond = 0;
-        }
-
-        this.MoneyPerSecondText.text = this.MoneyPerSecond.ToString();
     }
 
     public void Start()
