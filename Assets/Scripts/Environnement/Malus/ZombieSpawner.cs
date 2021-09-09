@@ -12,21 +12,32 @@ public class ZombieSpawner : Malus
 
     public override void SendMalus()
     {
-        Debug.Log(isServer);
         if (isServer)
         {
-            this.Toto();
+            this.SpawnZombie();
         }
     }
 
     [Command(requiresAuthority = false)]
-    public void Toto()
+    public void SpawnZombie()
     {
-        foreach (GameObject item in this.ItemToSpawn)
+        if (this.PlayerThatPaidMalus == this.WaveManager.FirstPlayer)
         {
             List<GameObject> spawnPoints = this.WaveManager.SecondPlayerSpawnPoints;
             GameObject playerToFollow = this.WaveManager.SecondPlayer;
-            this.WaveManager.InstantiateZombie(item, spawnPoints, playerToFollow);
+            foreach (GameObject item in this.ItemToSpawn)
+            {
+                this.WaveManager.InstantiateZombie(item, spawnPoints, playerToFollow);
+            }
+        }
+        else if (this.PlayerThatPaidMalus == this.WaveManager.SecondPlayer)
+        {
+            List<GameObject> spawnPoints = this.WaveManager.FirstPlayerSpawnPoints;
+            GameObject playerToFollow = this.WaveManager.FirstPlayer;
+            foreach (GameObject item in this.ItemToSpawn)
+            {
+                this.WaveManager.InstantiateZombie(item, spawnPoints, playerToFollow);
+            }
         }
     }
 }
