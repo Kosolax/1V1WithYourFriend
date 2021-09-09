@@ -10,6 +10,10 @@ public class ZombieSpawner : Malus
 {
     public List<GameObject> ItemToSpawn;
 
+    public override void RevertMalus()
+    {
+    }
+
     public override void SendMalus()
     {
         if (this.isServer)
@@ -21,7 +25,7 @@ public class ZombieSpawner : Malus
     [Command(requiresAuthority = false)]
     public void SpawnZombie()
     {
-        if (this.PlayerThatPaidMalus == this.WaveManager.FirstPlayer)
+        if (this.Interact.PlayerThatPaid == this.WaveManager.FirstPlayer)
         {
             List<GameObject> spawnPoints = this.WaveManager.SecondPlayerSpawnPoints;
             GameObject playerToFollow = this.WaveManager.SecondPlayer;
@@ -30,7 +34,7 @@ public class ZombieSpawner : Malus
                 this.WaveManager.InstantiateZombie(item, spawnPoints, playerToFollow);
             }
         }
-        else if (this.PlayerThatPaidMalus == this.WaveManager.SecondPlayer)
+        else if (this.Interact.PlayerThatPaid == this.WaveManager.SecondPlayer)
         {
             List<GameObject> spawnPoints = this.WaveManager.FirstPlayerSpawnPoints;
             GameObject playerToFollow = this.WaveManager.FirstPlayer;

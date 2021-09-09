@@ -11,7 +11,7 @@ public class HideMiniMap : Malus
 
     public override void SendMalus()
     {
-        if (!this.PlayerThatPaidMalus.GetComponent<NetworkIdentity>().isLocalPlayer)
+        if (!this.Interact.PlayerThatPaid.GetComponent<NetworkIdentity>().isLocalPlayer)
         {
             this.MiniMapToHide.SetActive(false);
         }
@@ -19,7 +19,7 @@ public class HideMiniMap : Malus
 
     public override void RevertMalus()
     {
-        if (!this.PlayerThatPaidMalus.GetComponent<NetworkIdentity>().isLocalPlayer)
+        if (!this.Interact.PlayerThatPaid.GetComponent<NetworkIdentity>().isLocalPlayer)
         {
             this.MiniMapToHide.SetActive(true);
         }
