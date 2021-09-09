@@ -7,12 +7,16 @@ using UnityEngine;
 
 public class WaveManager : NetworkBehaviour
 {
-    public int currentIndexInItemsToSpawn;
+    [SyncVar]
+    public int CurrentIndexInItemsToSpawn;
 
-    public float currentTimeBetweenLastSpawning;
+    [SyncVar]
+    public float CurrentTimeBetweenLastSpawning;
 
-    public float currentTimeWaveIsRunning;
+    [SyncVar]
+    public float CurrentTimeWaveIsRunning;
 
+    [SyncVar]
     public int CurrentWave;
 
     public GameObject FirstPlayer;
@@ -27,6 +31,10 @@ public class WaveManager : NetworkBehaviour
     [SyncVar]
     public List<Malus> ListMalusPlayer2;
 
+    public Dictionary<int, List<Malus>> ListMalusPlayer1ToRevert; 
+
+    public Dictionary<int, List<Malus>> ListMalusPlayer2ToRevert;
+
     public GameObject SecondPlayer;
 
     public List<GameObject> SecondPlayerSpawnPoints;
@@ -35,15 +43,15 @@ public class WaveManager : NetworkBehaviour
 
     public List<KeyValuePair<ZombieStats, float>> ZombiePlayer1Malus;
     public List<KeyValuePair<ZombieStats, float>> ZombiePlayer2Malus;
-    
+
     [Command(requiresAuthority = false)]
     public void SpawnItem()
     {
         Wave wave = this.Waves[this.CurrentWave];
-        if (this.currentIndexInItemsToSpawn < wave.ItemsToSpawn.Count)
+        if (this.CurrentIndexInItemsToSpawn < wave.ItemsToSpawn.Count)
         {
-            this.InstantiateZombie(wave.ItemsToSpawn[this.currentIndexInItemsToSpawn], this.SecondPlayerSpawnPoints, this.SecondPlayer);
-            this.InstantiateZombie(wave.ItemsToSpawn[this.currentIndexInItemsToSpawn], this.FirstPlayerSpawnPoints, this.FirstPlayer);
+            this.InstantiateZombie(wave.ItemsToSpawn[this.CurrentIndexInItemsToSpawn], this.SecondPlayerSpawnPoints, this.SecondPlayer);
+            this.InstantiateZombie(wave.ItemsToSpawn[this.CurrentIndexInItemsToSpawn], this.FirstPlayerSpawnPoints, this.FirstPlayer);
         }
     }
 
@@ -101,55 +109,55 @@ public class WaveManager : NetworkBehaviour
         {
             if (this.CurrentWave < this.Waves.Count)
             {
-                Wave wave = this.Waves[this.CurrentWave];
-                if (wave != null)
+                if (this.ListMalusPlayer1ToRevert.ContainsKey(this.CurrentWave - 1))
                 {
-                    if (this.currentTimeWaveIsRunning < wave.TimeBeforeConsideringWaveIsFinished)
+                    foreach (Malus malus in this.ListMalusPlayer1ToRevert[this.CurrentWave - 1])
                     {
-                        if (this.currentTimeBetweenLastSpawning >= wave.DelayBetweenItemSpawn)
+                        malus.RevertMalus();
+                    }
+
+                    this.ListMalusPlayer1ToRevert.Remove(this.CurrentWave - 1);
+                }
+
+                if (this.ListMalusPlayer2ToRevert.ContainsKey(this.CurrentWave - 1))
+                {
+                    foreach (Malus malus in this.ListMalusPlayer2ToRevert[this.CurrentWave - 1])
+                    {
+                        malus.RevertMalus();
+                    }
+
+                    this.ListMalusPlayer2ToRevert.Remove(this.CurrentWave - 1);
+                }
+
+                if (this.isServer)
+                {
+                    Wave wave = this.Waves[this.CurrentWave];
+                    if (this.CurrentTimeWaveIsRunning < wave.TimeBeforeConsideringWaveIsFinished)
+                    {
+                        if (this.CurrentTimeBetweenLastSpawning >= wave.DelayBetweenItemSpawn)
                         {
-                            if (isServer)
+                            if (this.isServer)
                             {
                                 this.SpawnItem();
                             }
-                            this.currentIndexInItemsToSpawn++;
-                            this.currentTimeBetweenLastSpawning = 0;
+                            this.CurrentIndexInItemsToSpawn++;
+                            this.CurrentTimeBetweenLastSpawning = 0;
                         }
 
 
-                        this.currentTimeBetweenLastSpawning += Time.deltaTime;
-                        this.currentTimeWaveIsRunning += Time.deltaTime;
+                        this.CurrentTimeBetweenLastSpawning += Time.deltaTime;
+                        this.CurrentTimeWaveIsRunning += Time.deltaTime;
                     }
                     else
                     {
-                        this.ZombiePlayer1Malus = new List<KeyValuePair<ZombieStats, float>>();
-                        this.ZombiePlayer2Malus = new List<KeyValuePair<ZombieStats, float>>();
-                        this.currentIndexInItemsToSpawn = 0;
+                        this.ClearMalus();
+                        this.CurrentIndexInItemsToSpawn = 0;
                         this.CurrentWave++;
-                        this.currentTimeWaveIsRunning = 0f;
-                        this.currentTimeBetweenLastSpawning = 0;
+                        this.CurrentTimeWaveIsRunning = 0f;
+                        this.CurrentTimeBetweenLastSpawning = 0;
 
-                        foreach (Malus malus in this.ListMalusPlayer1)
-                        {
-                            malus.SendMalus();
-                        }
-
-                        foreach (Malus malus in this.ListMalusPlayer2)
-                        {
-                            malus.SendMalus();
-                        }
-
-                        this.RemoveMalus();
+                        this.Toto(this.CurrentWave);
                     }
-                }
-                else
-                {
-                    this.ZombiePlayer1Malus = new List<KeyValuePair<ZombieStats, float>>();
-                    this.ZombiePlayer2Malus = new List<KeyValuePair<ZombieStats, float>>();
-                    this.currentIndexInItemsToSpawn = 0;
-                    this.currentTimeWaveIsRunning = 0f;
-                    this.currentTimeBetweenLastSpawning = 0;
-                    this.CurrentWave++;
                 }
             }
             else
@@ -159,17 +167,54 @@ public class WaveManager : NetworkBehaviour
         }
     }
 
-    [Command(requiresAuthority = false)]
-    public void RemoveMalus()
+    [ClientRpc]
+    public void ClearMalus()
     {
-        this.RemoveMalusRpc();
+        this.ZombiePlayer1Malus.Clear();
+        this.ZombiePlayer2Malus.Clear();
     }
 
     [ClientRpc]
-    public void RemoveMalusRpc()
+    public void Toto(int currentWave)
     {
+        foreach (Malus malus in this.ListMalusPlayer1)
+        {
+            malus.SendMalus();
+            Debug.Log($"currentWaveToRevert1 {currentWave}");
+            if (this.ListMalusPlayer1ToRevert.ContainsKey(currentWave))
+            {
+                this.ListMalusPlayer1ToRevert[currentWave].Add(malus);
+            }
+            else
+            {
+                this.ListMalusPlayer1ToRevert.Add(currentWave, new List<Malus>() { malus });
+            }
+        }
+
+        foreach (Malus malus in this.ListMalusPlayer2)
+        {
+            malus.SendMalus();
+            Debug.Log($"currentWaveToRevert2 {currentWave}");
+            if (this.ListMalusPlayer2ToRevert.ContainsKey(currentWave))
+            {
+                this.ListMalusPlayer2ToRevert[currentWave].Add(malus);
+            }
+            else
+            {
+                this.ListMalusPlayer2ToRevert.Add(currentWave, new List<Malus>() { malus });
+            }
+        }
+
         this.ListMalusPlayer1.Clear();
         this.ListMalusPlayer2.Clear();
+        foreach (Transform child in this.FirstPlayer.GetComponent<ZombiePlayer>().Malus.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        foreach (Transform child in this.SecondPlayer.GetComponent<ZombiePlayer>().Malus.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     private void Start()
@@ -178,10 +223,12 @@ public class WaveManager : NetworkBehaviour
         this.ZombiePlayer2Malus = new List<KeyValuePair<ZombieStats, float>>();
         this.ListMalusPlayer1 = new List<Malus>();
         this.ListMalusPlayer2 = new List<Malus>();
+        this.ListMalusPlayer1ToRevert = new Dictionary<int, List<Malus>>();
+        this.ListMalusPlayer2ToRevert = new Dictionary<int, List<Malus>>();
         this.isSpawning = false;
         this.CurrentWave = 0;
-        this.currentIndexInItemsToSpawn = 0;
-        this.currentTimeBetweenLastSpawning = 0;
-        this.currentTimeWaveIsRunning = 0;
+        this.CurrentIndexInItemsToSpawn = 0;
+        this.CurrentTimeBetweenLastSpawning = 0;
+        this.CurrentTimeWaveIsRunning = 0;
     }
 }

@@ -16,6 +16,8 @@ public class ZombiePlayer : BasePlayer
     public TextMeshProUGUI MoneyText;
     public TextMeshProUGUI HealthText;
 
+    public GameObject Malus;
+
     public ZombiePlayerMoneyManager ZombiePlayerMoneyManager { get; set; }
 
     [ClientRpc]

@@ -12,7 +12,7 @@ public class ZombieSpawner : Malus
 
     public override void SendMalus()
     {
-        if (isServer)
+        if (this.isServer)
         {
             this.SpawnZombie();
         }

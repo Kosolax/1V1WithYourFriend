@@ -218,11 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1bdf241d1caa3458163e0b29d8130e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayBetweenItemSpawn: 5
+  DelayBetweenItemSpawn: 0.1
   ItemsToSpawn:
   - {fileID: 3564005890040822061, guid: 38c9d7a10c1f54c4ab12e4286d9b98d5, type: 3}
-  - {fileID: 3564005890040822061, guid: 08df2c864d79f7d428d901f4011acc9b, type: 3}
-  - {fileID: 3564005890040822061, guid: 104fe449baa741947a78cab8653082f0, type: 3}
   TimeBeforeConsideringWaveIsFinished: 20
 --- !u!4 &197982985
 Transform:
@@ -254,6 +252,18 @@ PrefabInstance:
       propertyPath: ZombieGameManager
       value: 
       objectReference: {fileID: 1643362422}
+    - target: {fileID: 745263762, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
+      propertyPath: WaveManager
+      value: 
+      objectReference: {fileID: 898153097}
+    - target: {fileID: 745263762, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
+      propertyPath: MiniMapToHide
+      value: 
+      objectReference: {fileID: 1661983764}
+    - target: {fileID: 745263763, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
+      propertyPath: sceneId
+      value: 2617609441
+      objectReference: {fileID: 0}
     - target: {fileID: 1050065548, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
       propertyPath: WaveManager
       value: 
@@ -270,10 +280,6 @@ PrefabInstance:
       propertyPath: WaveManager
       value: 
       objectReference: {fileID: 898153097}
-    - target: {fileID: 1684526390, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
-      propertyPath: ZombieGameManager
-      value: 
-      objectReference: {fileID: 1643362422}
     - target: {fileID: 676188362070133353, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
       propertyPath: sceneId
       value: 3301172421
@@ -579,9 +585,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  currentIndexInItemsToSpawn: 0
-  currentTimeBetweenLastSpawning: 0
-  currentTimeWaveIsRunning: 0
+  CurrentIndexInItemsToSpawn: 0
+  CurrentTimeBetweenLastSpawning: 0
+  CurrentTimeWaveIsRunning: 0
   CurrentWave: 0
   FirstPlayer: {fileID: 0}
   FirstPlayerSpawnPoints:
@@ -682,10 +688,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1bdf241d1caa3458163e0b29d8130e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayBetweenItemSpawn: 5
+  DelayBetweenItemSpawn: 0.1
   ItemsToSpawn:
   - {fileID: 3564005890040822061, guid: 104fe449baa741947a78cab8653082f0, type: 3}
   TimeBeforeConsideringWaveIsFinished: 20
+--- !u!1001 &1242662054
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3081656610068427156, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -270
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427158, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_Name
+      value: OurMiniMap
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+--- !u!1 &1242662055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3081656610068427158, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+  m_PrefabInstance: {fileID: 1242662054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1643362421
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +768,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1643362423}
   - component: {fileID: 1643362422}
+  - component: {fileID: 1643362424}
   m_Layer: 0
   m_Name: ZombieGameManager
   m_TagString: Untagged
@@ -715,9 +788,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9348117e9476c148b40bfd5b901b70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   PreasurePlate1: {fileID: 5926981474983685254}
   PreasurePlate2: {fileID: 407168056}
   WaveManager: {fileID: 898153097}
+  OurMiniMap: {fileID: 1242662055}
+  EnemyMiniMap: {fileID: 1661983764}
   ZombiesPlayer2: []
 --- !u!4 &1643362423
 Transform:
@@ -733,6 +810,89 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1643362424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643362421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1665750530
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!1001 &1661983763
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -270
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427157, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427158, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_Name
+      value: EnemyMiniMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081656610068427158, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+--- !u!1 &1661983764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3081656610068427158, guid: ca5c435c12e9f0941ade6a4d935b32ed, type: 3}
+  m_PrefabInstance: {fileID: 1661983763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1683484396
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1bdf241d1caa3458163e0b29d8130e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelayBetweenItemSpawn: 5
+  DelayBetweenItemSpawn: 0.1
   ItemsToSpawn:
   - {fileID: 3564005890040822061, guid: 104fe449baa741947a78cab8653082f0, type: 3}
   TimeBeforeConsideringWaveIsFinished: 20
@@ -791,6 +951,18 @@ PrefabInstance:
       propertyPath: ZombieGameManager
       value: 
       objectReference: {fileID: 1643362422}
+    - target: {fileID: 745263762, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
+      propertyPath: WaveManager
+      value: 
+      objectReference: {fileID: 898153097}
+    - target: {fileID: 745263762, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
+      propertyPath: MiniMapToHide
+      value: 
+      objectReference: {fileID: 1661983764}
+    - target: {fileID: 745263763, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
+      propertyPath: sceneId
+      value: 287658208
+      objectReference: {fileID: 0}
     - target: {fileID: 1050065548, guid: 0f34453776a99aa4ba44aebddd61d273, type: 3}
       propertyPath: WaveManager
       value: 

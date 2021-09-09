@@ -6,6 +6,7 @@ using Mirror;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Malus : NetworkBehaviour
 {
@@ -30,6 +31,8 @@ public class Malus : NetworkBehaviour
     public GameObject PlayerThatPaidMalus;
 
     public WaveManager WaveManager;
+
+    public Image Image;
 
     private void Start()
     {
@@ -79,6 +82,11 @@ public class Malus : NetworkBehaviour
 
     }
 
+    public virtual void RevertMalus()
+    {
+
+    }
+
     [Command(requiresAuthority = false)]
     public void AddMalus(GameObject player)
     {
@@ -91,10 +99,14 @@ public class Malus : NetworkBehaviour
         this.PlayerThatPaidMalus = player;
         if (this.PlayerThatPaidMalus == this.WaveManager.FirstPlayer)
         {
+            Image image = Instantiate(Image);
+            image.transform.SetParent(this.WaveManager.SecondPlayer.GetComponent<ZombiePlayer>().Malus.transform);
             this.WaveManager.ListMalusPlayer2.Add(this);
         }
         else if (this.PlayerThatPaidMalus == this.WaveManager.SecondPlayer)
         {
+            Image image = Instantiate(Image);
+            image.transform.SetParent(this.WaveManager.FirstPlayer.GetComponent<ZombiePlayer>().Malus.transform);
             this.WaveManager.ListMalusPlayer1.Add(this);
         }
     }

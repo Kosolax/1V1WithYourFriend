@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 
+using Mirror;
+
 using UnityEngine;
 
-public class ZombieGameManager : MonoBehaviour
+public class ZombieGameManager : NetworkBehaviour
 {
     public static bool IsGameStarted;
 
@@ -26,6 +28,9 @@ public class ZombieGameManager : MonoBehaviour
         }
     }
 
+    public GameObject OurMiniMap;
+    public GameObject EnemyMiniMap;
+
     public GameObject SecondPlayer
     {
         get => this.secondPlayer;
@@ -44,11 +49,21 @@ public class ZombieGameManager : MonoBehaviour
     {
         this.ZombiesPlayer1 = new List<GameObject>();
         this.ZombiesPlayer2 = new List<GameObject>();
+        if (this.isServer)
+        {
+            this.OurMiniMap.transform.position = new Vector3(0, 99, 0);
+            this.EnemyMiniMap.transform.position = new Vector3(100, 99, 0);
+        }
+        else
+        {
+            this.OurMiniMap.transform.position = new Vector3(100, 99, 0);
+            this.EnemyMiniMap.transform.position = new Vector3(0, 99, 0);
+        }
     }
 
     private void Update()
     {
-        if (!IsGameStarted && this.PreasurePlate1.IsPressed && this.PreasurePlate2.IsPressed)
+        if (!IsGameStarted && this.PreasurePlate1.IsPressed)
         {
             IsGameStarted = true;
             this.PreasurePlate1.gameObject.SetActive(false);

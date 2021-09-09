@@ -357,6 +357,18 @@ PrefabInstance:
       propertyPath: LobbyManager
       value: 
       objectReference: {fileID: 1637531350}
+    - target: {fileID: 2279852264072248321, guid: 04ba922dbaf8c7640b593827016dc295, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279852264072248321, guid: 04ba922dbaf8c7640b593827016dc295, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279852264072248321, guid: 04ba922dbaf8c7640b593827016dc295, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 2279852264072248323, guid: 04ba922dbaf8c7640b593827016dc295, type: 3}
       propertyPath: m_Pivot.x
       value: 0
