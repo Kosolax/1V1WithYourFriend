@@ -575,6 +575,7 @@ MonoBehaviour:
   - {fileID: 3564005890040822061, guid: 104fe449baa741947a78cab8653082f0, type: 3}
   - {fileID: 3564005890040822061, guid: 38c9d7a10c1f54c4ab12e4286d9b98d5, type: 3}
   - {fileID: 3564005890040822061, guid: 08df2c864d79f7d428d901f4011acc9b, type: 3}
+  - {fileID: 1362942404519967849, guid: f3a94eb14bff66a4abae10270d60adcb, type: 3}
   fightModPlayerPrefab: {fileID: 503586429310425935, guid: 91d3fab5b3a7fd049b2618d7dabb5d20, type: 3}
   LobbyManager: {fileID: 1637531350}
   zombieModPlayerPrefab: {fileID: 6546300877947570653, guid: bb64617b1190be14aad0e5706b2a06f3, type: 3}

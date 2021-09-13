@@ -196,6 +196,9 @@ MonoBehaviour:
   MaxHealth: 1
   MoneyGain: 1
   PlayerToFollow: {fileID: 0}
+  BonusToDrops:
+  - {fileID: 1362942404519967849, guid: f3a94eb14bff66a4abae10270d60adcb, type: 3}
+  DropRate: 100
   Speed: 7
 --- !u!135 &2781279137388668405
 SphereCollider:
