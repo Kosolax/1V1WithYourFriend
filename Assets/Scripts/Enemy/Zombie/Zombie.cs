@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using Mirror;
 
 using UnityEngine;
@@ -29,6 +31,11 @@ public class Zombie : NetworkBehaviour
 
     public GameObject PlayerToFollow;
 
+    public List<GameObject> BonusToDrops;
+
+    [Range(0, 100)]
+    public int DropRate;
+
     [SyncVar]
     public float Speed = 20f;
 
@@ -47,10 +54,22 @@ public class Zombie : NetworkBehaviour
 
     private float currentDelayDamage;
 
-    [Command(requiresAuthority = false)]
     public void TakeDamage(float damage)
     {
-        this.UpdateHpForOthers(damage);
+        int i = -1;
+        int localDropRate = Random.Range(0, 101);
+        if (localDropRate <= this.DropRate)
+        {
+            i = Random.Range(0, this.BonusToDrops.Count);
+        }
+
+        this.TakeDamageCmd(damage, i);
+    }
+
+    [Command(requiresAuthority = false)]
+    private void TakeDamageCmd(float damage, int i)
+    {
+        this.UpdateHpForOthers(damage, i);
     }
     
     private void Attack(Collider other)
@@ -110,11 +129,19 @@ public class Zombie : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void UpdateHpForOthers(float damage)
+    private void UpdateHpForOthers(float damage, int i)
     {
         this.Health -= damage;
         if (this.Health <= 0)
         {
+            if (i > -1 && this.isServer)
+            {
+                GameObject bonus = this.BonusToDrops[i];
+                GameObject instantiatedBonus = Instantiate(bonus);
+                instantiatedBonus.transform.position = this.transform.position;
+                NetworkServer.Spawn(instantiatedBonus);
+            }
+
             NetworkServer.UnSpawn(this.gameObject);
             Destroy(this.gameObject);
         }

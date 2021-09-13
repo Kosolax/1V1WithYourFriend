@@ -72,6 +72,19 @@ public class ZombiePlayer : BasePlayer
         this.UpdateHpForOthers(damage);
     }
 
+    [Command(requiresAuthority = false)]
+    public void Heal(float health)
+    {
+        this.HealRpc(health);
+    }
+
+    [ClientRpc]
+    private void HealRpc(float health)
+    {
+        this.Health = health;
+        this.HealthText.text = this.Health.ToString();
+    }
+
     [ClientRpc]
     private void UpdateHpForOthers(float damage)
     {
