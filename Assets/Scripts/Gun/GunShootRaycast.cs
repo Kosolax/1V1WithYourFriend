@@ -157,7 +157,6 @@ public class GunShootRaycast : NetworkBehaviour
     // Update is called once per frame
     private void Update()
     {
-        timer -= Time.deltaTime;
         if (this.isReloading == false)
         {
             this.UpdateAmmo();

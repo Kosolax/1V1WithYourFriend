@@ -7,7 +7,7 @@ public class Player : BasePlayer
 {
     [Header("Player Health Settings")]
     public Text PlayerLifeText;
-    private GunShootRaycast gunShootRaycast;
+    //private GunShootRaycast gunShootRaycast;
 
     public bool IsDead { get; set; }
 
@@ -41,7 +41,7 @@ public class Player : BasePlayer
     protected override void Initialise()
     {
         base.Initialise();
-        this.gunShootRaycast = new GunShootRaycast();
+        //this.gunShootRaycast = new GunShootRaycast();
         this.hasFinishInitialisation = true;
     }
 
