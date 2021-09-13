@@ -651,7 +651,7 @@ MonoBehaviour:
   IpInputField: {fileID: 339226323}
   JumpHeight: 20
   JumpHeightText: {fileID: 960633760}
-  MaxHealth: 3
+  MaxHealth: 100
   MaxHealthText: {fileID: 158465913}
   NetworkManager: {fileID: 1512801148}
   NextButton: {fileID: 769851170}

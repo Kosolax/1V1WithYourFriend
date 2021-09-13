@@ -1,27 +1,20 @@
+using System.Collections;
+
 using UnityEngine;
 
-public class GunBaseRaycast : MonoBehaviour
+public class GunBaseRaycast : MonoBehaviour, IGun
 {
-    [SerializeField]
-    private float beamDuration = 0.1f;
+    public float damage;
 
-    [SerializeField]
-    private float damage = 40f;
+    public float currentAmmo;
 
-    [SerializeField]
-    private float fireRate = 1f;
+    public float fireRate;
 
-    [SerializeField]
-    private GunShootRaycast GunShootRaycast;
+    public float magazineSize;
 
-    [SerializeField]
-    private float magazineSize = 5;
+    public float range;
 
-    [SerializeField]
-    private float range = 100f;
-
-    [SerializeField]
-    private float reloadTime = 10f;
+    public float reloadTime;
 
     [SerializeField]
     private ParticleSystem muzzleFlashParticle;
@@ -29,21 +22,78 @@ public class GunBaseRaycast : MonoBehaviour
     [SerializeField]
     private GameObject shootEmmiter;
 
-    public void UpdateWeaponStats()
-    {
-        this.GunShootRaycast.enableScripts();
-        this.GunShootRaycast.damage = this.damage;
-        this.GunShootRaycast.range = this.range;
-        this.GunShootRaycast.fireRate = this.fireRate;
-        this.GunShootRaycast.magazineSize = this.magazineSize;
-        this.GunShootRaycast.reloadTime = this.reloadTime;
-        this.GunShootRaycast.beamDuration = this.beamDuration;
-        this.GunShootRaycast.muzzleFlash = this.muzzleFlashParticle;
-        this.GunShootRaycast.shootEmmiter = this.shootEmmiter;
-    }
+    private Camera fpsCam;
+
+    [SerializeField]
+    private bool AutomaticMode;
+
+    public float timer;
 
     private void Start()
     {
-        this.UpdateWeaponStats();
+        this.currentAmmo = this.magazineSize;
+        this.timer = 0f;
+    }
+
+    private void Update()
+    {
+        this.timer -= Time.deltaTime;
+    }
+
+    public void Reload()
+    {
+        this.currentAmmo = this.magazineSize;
+    }
+
+    public float GetAmmoCount()
+    {
+        return this.currentAmmo;
+    }
+
+    public void SetAmmoCount(float value)
+    {
+        this.currentAmmo = value;
+    }
+
+    public float GetReloadTime()
+    {
+        return this.reloadTime;
+    }
+
+    public bool IsAutomatic()
+    {
+        return AutomaticMode;
+    }
+
+    public void SetTimer(float value)
+    {
+        this.timer = value;
+    }
+
+    public float GetTimer()
+    {
+        return this.timer;
+    }
+
+    public float GetFireRate()
+    {
+        return this.fireRate;
+    }
+
+    public void Shoot(Camera fpsCam, bool isLocalPlayer)
+    {
+        this.fpsCam = fpsCam;
+        this.currentAmmo -= 1;
+        RaycastHit hit;
+        //Here the only way i found to make layermask properly working is to use bits, so here im saying at the end, layer 7 is the only thing the raycast cannot hit (CurrentPlayer for now)
+        //if (Physics.Raycast(this.fpsCam.transform.position, this.fpsCam.transform.forward, out hit, this.range, ~(1 << 7)))
+        if (Physics.Raycast(this.fpsCam.transform.position, this.fpsCam.transform.forward, out hit))
+        {
+            Player target = hit.transform.parent.gameObject.GetComponent<Player>();
+            if (target != null)
+            {
+                target.ITookDamage(this.damage);
+            }
+        }
     }
 }
